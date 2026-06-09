@@ -13,10 +13,10 @@ const register = async (req, res) => {
 
     // TODO: Crear el usuario en la base de datos usando User.create()
     // Pista: pasar { nombre, email, password }
-    const user = null; // <-- reemplazar esta línea
+    const user = await User.create({ nombre, email, password });
 
     // TODO: Generar un token para el usuario recién creado usando generarToken()
-    const token = null; // <-- reemplazar esta línea
+    const token = generarToken(user);
 
     res.status(201).json({
       message: 'Usuario registrado exitosamente',
