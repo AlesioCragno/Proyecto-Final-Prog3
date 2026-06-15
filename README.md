@@ -1,3 +1,11 @@
+# Grupo 18
+#### Integrantes:
+> - Andrés Aguayo
+> - Alesio Cragno
+> - Fabricio Maida
+> - Ailén Villalba
+> - Valentina Vitale
+
 # Sistema Web Full-Stack con Docker
 
 Proyecto base para el trabajo final de Programacion 3. Es una aplicacion web completa con frontend, backend, base de datos y servicios auxiliares, todo orquestado con Docker Compose.
