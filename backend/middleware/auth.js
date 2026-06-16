@@ -22,7 +22,7 @@ function verificarToken(req, res, next) {
   // TODO: Extraer el token del header Authorization.
   // El formato es "Bearer <token>", hay que quedarse solo con la parte del token.
   // Pista: usar split(' ')
-  const token = null; // <-- reemplazar esta línea
+  const token = authHeader.split(' ')[1]; // <-- reemplazar esta línea
 
   if (!token) {
     return res.status(401).json({ error: 'Formato de token inválido' });
