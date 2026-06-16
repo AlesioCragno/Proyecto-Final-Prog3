@@ -5,6 +5,11 @@ const JWT_SECRET = process.env.JWT_SECRET || 'secret_por_defecto';
 function generarToken(user) {
   // TODO: Generar un token JWT con el id y email del usuario.
   // Pista: usar jwt.sign() con un payload { id, email } y una expiración de '24h'.
+  token = jwt.sign(
+    { id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' }
+  );
+
+  return token;
 }
 
 function verificarToken(req, res, next) {
