@@ -36,8 +36,13 @@ module.exports = (sequelize) => {
     timestamps: true,
     hooks: {
       beforeCreate: async (user) => {
-        // TODO: Hashear la contraseña antes de guardar el usuario.
-        // Pista: usar bcrypt.hash() con 10 rondas de salt.
+        try {
+          const saltRounds = 10;
+          const contrasenaHasheada = await bcrypt.hash(user.password, saltRounds); //Hashea la contraseña antes de guardar el usuario.
+          return contrasenaHasheada;
+        } catch (error) {
+          console.error("Error. No se puede hashear la contraseña", error);
+        }
       }
     }
   });
