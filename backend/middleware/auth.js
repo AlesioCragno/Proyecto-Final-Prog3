@@ -32,6 +32,12 @@ function verificarToken(req, res, next) {
     // TODO: Verificar y decodificar el token con jwt.verify()
     // Si es válido, guardar los datos del usuario en req.user y llamar a next()
     // Si es inválido, devolver status 401 con un mensaje de error
+
+    const tokendeco = jwt.verify(token, JWT_SECRET); // Verificación con jwt.verify
+
+    req.user = tokendeco; // Guardado de datos en req.user
+
+    next(); // LLamar a next
   } catch (error) {
     return res.status(401).json({ error: 'Token inválido o expirado' });
   }
