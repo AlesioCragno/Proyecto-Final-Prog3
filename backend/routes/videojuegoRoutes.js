@@ -6,8 +6,6 @@ const {
   createVideojuego
 } = require('../controllers/videojuegoController')
 
-const rutas = Router();
-
 // Definir rutas
 // GET /api/videojuegos - Obtener todos los videojuegos
 router.get('/', videojuegoController.getAllVideojuegos);
