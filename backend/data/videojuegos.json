@@ -1,0 +1,302 @@
+[
+  {
+    "nombre": "The Legend of Zelda: Breath of the Wild",
+    "descripcion": "Un juego de acción y aventura de mundo abierto donde los jugadores exploran el reino de Hyrule para derrotar a Calamity Ganon.",
+    "genero": "Acción-Aventura",
+    "plataforma": "Nintendo Switch, Wii U"
+  },
+  {
+    "nombre": "Elden Ring",
+    "descripcion": "Un RPG de acción de mundo abierto con un combate desafiante, ambientado en las Tierras Intermedias con historia de George R.R. Martin.",
+    "genero": "RPG de Acción",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "The Witcher 3: Wild Hunt",
+    "descripcion": "Sigue al cazador de monstruos Geralt de Rivia en su búsqueda de su hija adoptiva en un vasto mundo de fantasía oscura.",
+    "genero": "RPG",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Grand Theft Auto V",
+    "descripcion": "Tres criminales muy diferentes entrelazan sus vidas en la ciudad de Los Santos en una historia de atracos y acción.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PC, PS3, PS4, PS5, Xbox 360, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "Red Dead Redemption 2",
+    "descripcion": "Una epopeya de la vida en el implacable corazón de América al final de la era del Salvaje Oeste, siguiendo al forajido Arthur Morgan.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PC, PS4, Xbox One"
+  },
+  {
+    "nombre": "Minecraft",
+    "descripcion": "Un juego de tipo sandbox donde los jugadores pueden construir, explorar y sobrevivir en un mundo generado por procedimientos hecho de bloques.",
+    "genero": "Sandbox / Sobrevivencia",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch, iOS, Android"
+  },
+  {
+    "nombre": "Hades",
+    "descripcion": "Un juego roguelike de exploración de mazmorras en el que desafías al dios de los muertos mientras te abres camino fuera del Inframundo.",
+    "genero": "Roguelike / Acción",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch, iOS"
+  },
+  {
+    "nombre": "God of War (2018)",
+    "descripcion": "Kratos regresa, ahora viviendo en el reino de los dioses y monstruos nórdicos, en un viaje personal junto a su hijo Atreus.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PS4, PC"
+  },
+  {
+    "nombre": "Cyberpunk 2077",
+    "descripcion": "Un RPG de acción de mundo abierto ambientado en Night City, una megalópolis obsesionada con el poder, el glamur y la modificación corporal.",
+    "genero": "RPG de Acción",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "Hollow Knight",
+    "descripcion": "Un metroidvania clásico en 2D ambientado en un vasto reino en ruinas lleno de insectos y héroes.",
+    "genero": "Metroidvania",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch"
+  },
+  {
+    "nombre": "Super Mario Odyssey",
+    "descripcion": "Acompaña a Mario en una aventura en 3D a nivel mundial utilizando sus nuevas habilidades de transformación con la ayuda de Cappy.",
+    "genero": "Plataformas",
+    "plataforma": "Nintendo Switch"
+  },
+  {
+    "nombre": "Portal 2",
+    "descripcion": "Un juego de rompecabezas en primera persona que expande la innovadora jugabilidad basada en portales y añade una campaña cooperativa.",
+    "genero": "Rompecabezas / Plataformas",
+    "plataforma": "PC, Xbox 360, PS3, Nintendo Switch"
+  },
+  {
+    "nombre": "Stardew Valley",
+    "descripcion": "Heredas la vieja parcela agrícola de tu abuelo y decides comenzar una nueva vida viviendo de la tierra en este simulador rural.",
+    "genero": "Simulación / RPG",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch, iOS, Android"
+  },
+  {
+    "nombre": "Skyrim (The Elder Scrolls V)",
+    "descripcion": "Un RPG épico de fantasía de mundo abierto donde puedes ser el Dovahkiin (Sangre de Dragón) y explorar un vasto continente septentrional.",
+    "genero": "RPG",
+    "plataforma": "PC, PS3, PS4, PS5, Xbox 360, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Horizon Zero Dawn",
+    "descripcion": "En un mundo postapocalíptico dominado por máquinas robóticas, la cazadora Aloy busca descubrir los secretos de su pasado.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PS4, PC"
+  },
+  {
+    "nombre": "Persona 5 Royal",
+    "descripcion": "Un RPG estilizado sobre un grupo de estudiantes de secundaria que viven una doble vida como los Ladrones Fantasmas de Corazones.",
+    "genero": "JRPG / Simulación Social",
+    "plataforma": "PS4, PS5, PC, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Doom Eternal",
+    "descripcion": "Conviértete en el Slayer en una frenética batalla en primera persona contra las fuerzas del infierno que han invadido la Tierra.",
+    "genero": "Disparos en primera persona (FPS)",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Celeste",
+    "descripcion": "Un juego de plataformas en 2D super preciso sobre una joven llamada Madeline que se enfrenta a sus demonios internos mientras escala una montaña.",
+    "genero": "Plataformas",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch"
+  },
+  {
+    "nombre": "Sekiro: Shadows Die Twice",
+    "descripcion": "Un juego de acción y sigilo ambientado en el Japón de la era Sengoku, centrado en el preciso contraataque con espadas.",
+    "genero": "Acción",
+    "plataforma": "PC, PS4, Xbox One"
+  },
+  {
+    "nombre": "BioShock Infinite",
+    "descripcion": "El ex-agente Booker DeWitt debe rescatar a una misteriosa mujer llamada Elizabeth de la ciudad flotante de Columbia en 1912.",
+    "genero": "FPS / Narrativo",
+    "plataforma": "PC, PS3, PS4, Xbox 360, Xbox One, Nintendo Switch"
+  },
+  {
+    "nombre": "Bloodborne",
+    "descripcion": "Explora la decrépita ciudad gótica de Yharnam, cuyos habitantes han sido transformados por una extraña enfermedad transmitida por la sangre.",
+    "genero": "RPG de Acción",
+    "plataforma": "PS4"
+  },
+  {
+    "nombre": "Overwatch 2",
+    "descripcion": "Un juego de disparos táctico por equipos en constante evolución ambientado en un futuro optimista, con un gran elenco de héroes.",
+    "genero": "Hero Shooter",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Resident Evil 4 (Remake)",
+    "descripcion": "El agente especial Leon S. Kennedy es enviado a rescatar a la hija del presidente de los Estados Unidos de un pueblo europeo dominado por un culto.",
+    "genero": "Survival Horror",
+    "plataforma": "PC, PS4, PS5, Xbox Series X/S"
+  },
+  {
+    "nombre": "The Last of Us Part I",
+    "descripcion": "En una civilización devastada, Joel, un superviviente cansado, es contratado para sacar de contrabando a Ellie, una niña de 14 años, de una zona militar.",
+    "genero": "Acción-Aventura / Drama",
+    "plataforma": "PS5, PC"
+  },
+  {
+    "nombre": "Uncharted 4: A Thief's End",
+    "descripcion": "El cazador de tesoros retirado Nathan Drake se ve obligado a regresar al mundo de los ladrones para salvar a su hermano.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PS4, PS5, PC"
+  },
+  {
+    "nombre": "Outer Wilds",
+    "descripcion": "Un misterio de mundo abierto sobre un sistema solar atrapado en un bucle temporal infinito de 22 minutos.",
+    "genero": "Exploración / Misterio",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Marvel's Spider-Man",
+    "descripcion": "Ponte en la piel de un Peter Parker experimentado luchando contra el crimen organizado en una Nueva York recreada a gran escala.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PS4, PS5, PC"
+  },
+  {
+    "nombre": "Mass Effect Legendary Edition",
+    "descripcion": "La trilogía cinematográfica de ciencia ficción totalmente remasterizada, donde tus decisiones afectan el destino de la galaxia.",
+    "genero": "RPG de Ciencia Ficción",
+    "plataforma": "PC, PS4, Xbox One"
+  },
+  {
+    "nombre": "Disco Elysium",
+    "descripcion": "Un revolucionario RPG isométrico donde juegas como un detective con un sistema de habilidades único a tu disposición en un barrio decadente.",
+    "genero": "RPG / Narrativo",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Forza Horizon 5",
+    "descripcion": "Explora los vibrantes y cambiantes paisajes de mundo abierto de México con una acción de conducción ilimitada y divertida.",
+    "genero": "Carreras",
+    "plataforma": "PC, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "Subnautica",
+    "descripcion": "Desciende a las profundidades de un mundo submarino alienígena después de que tu nave se estrelle, recolectando recursos para sobrevivir.",
+    "genero": "Supervivencia / Exploración",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Baldur's Gate 3",
+    "descripcion": "Un RPG de nueva generación ambientado en el universo de Dungeons & Dragons, centrado en la toma de decisiones y el combate por turnos.",
+    "genero": "RPG",
+    "plataforma": "PC, PS5, Xbox Series X/S"
+  },
+  {
+    "nombre": "Cuphead",
+    "descripcion": "Un juego de acción clásico de disparar y correr enfocado en batallas contra jefes, inspirado en los dibujos animados de la década de 1930.",
+    "genero": "Run and Gun / Plataformas",
+    "plataforma": "PC, Xbox One, PS4, Nintendo Switch"
+  },
+  {
+    "nombre": "Dead Cells",
+    "descripcion": "Un metroidvania roguelite de acción frenética donde exploras un castillo en constante cambio y luchas contra guardianes implacables.",
+    "genero": "Roguelite / Metroidvania",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch, iOS, Android"
+  },
+  {
+    "nombre": "Fallout 4",
+    "descripcion": "Como el único superviviente del Refugio 111, emerges a un mundo destruido por la guerra nuclear y buscas a tu hijo desaparecido.",
+    "genero": "RPG",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "Monster Hunter: World",
+    "descripcion": "Caza monstruos gigantescos en un ecosistema vivo y utiliza los materiales recolectados para fabricar armas y armaduras poderosas.",
+    "genero": "Acción / RPG",
+    "plataforma": "PC, PS4, Xbox One"
+  },
+  {
+    "nombre": "Ghost of Tsushima",
+    "descripcion": "Un samurái debe ir más allá de sus tradiciones para librar una guerra poco unconventional y liberar a la isla de Tsushima de la invasión mongola.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PS4, PS5, PC"
+  },
+  {
+    "nombre": "Civilization VI",
+    "descripcion": "Un juego de estrategia por turnos en el que intentas construir un imperio que resista el paso del tiempo, desde la Edad de Piedra hasta la Era de la Información.",
+    "genero": "Estrategia",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch, iOS, Android"
+  },
+  {
+    "nombre": "Terraria",
+    "descripcion": "Cava, lucha, explora y construye en este juego de aventura en 2D que ofrece infinitas posibilidades creativas y de combate.",
+    "genero": "Sandbox / Aventura",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch, iOS, Android"
+  },
+  {
+    "nombre": "Among Us",
+    "descripcion": "Un juego de fiesta en línea donde los tripulantes de una nave espacial intentan mantenerla en funcionamiento mientras descubren a los impostores.",
+    "genero": "Deducción Social",
+    "plataforma": "PC, iOS, Android, Nintendo Switch, PS4, PS5, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "Dark Souls III",
+    "descripcion": "Un oscuro e implacable RPG de acción que concluye la aclamada trilogía con combates intensos y un rico diseño de niveles interconectados.",
+    "genero": "RPG de Acción",
+    "plataforma": "PC, PS4, Xbox One"
+  },
+  {
+    "nombre": "Rocket League",
+    "descripcion": "Un híbrido de alta potencia de fútbol arcade y caos automovilístico con una jugabilidad fácil de entender pero difícil de dominar.",
+    "genero": "Deportes / Acción",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "It Takes Two",
+    "descripcion": "Una aventura cooperativa pura diseñada específicamente para dos jugadores, que mezcla mecánicas de juego en constante evolución.",
+    "genero": "Plataformas / Cooperativo",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Detroit: Become Human",
+    "descripcion": "En una metrópolis del futuro cercano, las historias de tres androides se entrelazan mientras se enfrentan a dilemas morales y la búsqueda de su libertad.",
+    "genero": "Aventura Gráfica / Narrativo",
+    "plataforma": "PS4, PC"
+  },
+  {
+    "nombre": "Sea of Thieves",
+    "descripcion": "Ofrece la experiencia pirata definitiva, desde la navegación y la lucha hasta la exploración y el saqueo en un gran mundo compartido.",
+    "genero": "Aventura / Multijugador",
+    "plataforma": "PC, Xbox One, Xbox Series X/S, PS5"
+  },
+  {
+    "nombre": "Death Stranding",
+    "descripcion": "Del creador Hideo Kojima, una experiencia que desafía las convenciones de género donde Sam Bridges debe reconstruir una sociedad fracturada.",
+    "genero": "Acción / Ciencia Ficción",
+    "plataforma": "PS4, PS5, PC, iOS"
+  },
+  {
+    "nombre": "Ori and the Will of the Wisps",
+    "descripcion": "Embárcate en una nueva aventura en un vasto y exótico mundo donde encontrarás gigantescos enemigos y desafiantes acertijos en 2D.",
+    "genero": "Metroidvania / Plataformas",
+    "plataforma": "PC, Xbox One, Xbox Series X/S, Nintendo Switch"
+  },
+  {
+    "nombre": "Star Wars Jedi: Survivor",
+    "descripcion": "Continúa el viaje de Cal Kestis, ahora un poderoso Caballero Jedi que huye del Imperio en este juego de acción en tercera persona.",
+    "genero": "Acción-Aventura",
+    "plataforma": "PC, PS5, Xbox Series X/S"
+  },
+  {
+    "nombre": "Control",
+    "descripcion": "Una aventura de acción sobrenatural en tercera persona que te desafía a dominar la combinación de habilidades psicocinéticas y armas mutables.",
+    "genero": "Acción / Ciencia Ficción",
+    "plataforma": "PC, PS4, PS5, Xbox One, Xbox Series X/S"
+  },
+  {
+    "nombre": "Slay the Spire",
+    "descripcion": "Fusiona los juegos de cartas con el género roguelike para crear el mejor constructor de mazos dinámico para un jugador.",
+    "genero": "Roguelike / Cartas",
+    "plataforma": "PC, PS4, Xbox One, Nintendo Switch, iOS, Android"
+  }
+]
