@@ -14,6 +14,94 @@ Proyecto base para el trabajo final de Programacion 3. Es una aplicacion web com
 
 ---
 
+### Metodología de trabajo con Git y GitHub.
+
+Se utilizó Git para el control de versiones y GitHub para el trabajo colaborativo.
+
+Flujo de trabajo:
+
+1. Creación de ramas individuales para cada integrante.
+2. Desarrollo de funcionalidades en ramas de integrantes.
+3. Creación de Pull Requests.
+4. Revisión de código.
+5. Integración a la rama principal (main).
+
+## División de los archivos entre los integrantes.
+
+> **Valentina Vitale y Alesio Cragno**:
+>
+> - Implementacion de videojuegoController.js
+> - Implementacion de videojuegoRoutes.js
+
+> **Andres Aguayo**:
+>
+>
+
+> **Ailén Villalba y Fabricio Maida**:
+>
+>
+
+## Distribución de los archivos y carpetas.
+
+### controllers
+
+- 
+
+---
+
+### core
+
+
+- 
+
+---
+
+### data
+
+
+
+---
+
+### middleware
+
+
+
+- 
+
+---
+
+### models
+
+
+
+- 
+- 
+
+---
+
+### routes
+
+
+
+- 
+
+---
+
+### package.json
+
+
+
+---
+
+### tsconfig.json
+
+
+
+## FUNCIONES
+
+...
+
+
 ## Arquitectura General
 
 ```
