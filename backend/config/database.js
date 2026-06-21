@@ -1,5 +1,10 @@
 require("dotenv").config();
 
+const esNube =
+  process.env.PGHOST &&
+  process.env.PGHOST !== "localhost" &&
+  process.env.PGHOST !== "database"
+
 module.exports = {
   development: {
     username: process.env.PGUSER || process.env.DB_USER || "app_user",

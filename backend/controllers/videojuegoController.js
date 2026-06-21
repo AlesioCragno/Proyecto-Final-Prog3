@@ -1,74 +1,108 @@
+const fs = require("fs").promises;
 const { Videojuego } = require("../models/videojuegoModel");
 
-// Obtener todos los videojuegos
-exports.getAllVideojuegos = async (req, res) => {
+// OBTENER TODOS LOS VIDEOJUEGOS
+const getAllVideojuegos = async (req, res, next) => {
   try {
+    // Busca los videojuegos
     const videojuegos = await Videojuego.findAll();
-    res.status(200).json(videojuegos);
+
+    // Gestiona un error si no se encuentran videojuegos
+    if (!videojuegos || videojuegos === undefined) {
+      return res.status(404).json({ message: "No se encontraron videojuegos cargados en el sistema"})
+    }
+
+    // Retorna la lista de videojuegos
+    return res.status(200).json(videojuegos);
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+
+    // Imprime por consola el error y lo envia al handler
+    console.log(error)
+    next(error);
   }
 };
 
-// Obtener un videojuego por ID
-exports.getVideojuegoById = async (req, res) => {
+// OBTENER VIDEOJUEGO POR ID
+const getVideojuegoById = async (req, res, next) => {
   try {
-    const videojuego = await Videojuego.findByPk(req.params.id);
-    if (!videojuego) {
+    // Obtiene el id de los parametros de la direccion
+    const { id } = req.params
+
+    // Busca el videojuego con la id obtenida
+    const videojuego = await Videojuego.findById(id);
+
+    // Gestiona un error si no se encuentra el videojuego
+    if (!videojuego || videojuego === undefined) {
       return res.status(404).json({ message: "Videojuego no encontrado" });
     }
-    res.status(200).json(videojuego);
+
+    // Retorna el videojuego buscado
+    return res.status(200).json(videojuego);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+
+    // Imprime por consola el error y lo envia al handler
+    console.log(error)
+    next(error)
   }
 };
 
 // Crear un nuevo videojuego
-exports.createVideojuego = async (req, res) => {
+const postVideojuego = async (req, res, next) => {
   try {
-    const { titulo, descripcion, genero, plataforma } = req.body;
-    const videojuego = await Videojuego.create({
-      titulo,
-      descripcion,
-      genero,
-      plataforma,
-    });
-    res.status(201).json(videojuego);
+    // Obtiene los atributos del body de la peticion
+    const { nombre, descripcion, genero, plataforma } = req.body;
+
+    // Crea un nuevo videojuego en base al modelo
+    Videojuego.createVideojuego(nombre, descripcion, genero, plataforma);
+
+    // Busca el ultimo videojuego (es decir el que se acaba de agregar)
+    const videojuegoCreado = Videojuego.findLastOne()
+
+    // Retorna el juego que se acaba de agregar
+    return res.status(201).json(videojuegoCreado);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+
+    // Imprime por consola el error y lo envia al handler
+    console.log(error)
+    next(error)
   }
 };
 
-// Actualizar un videojuego (con validación de existencia)
-exports.updateVideojuego = async (req, res) => {
-  try {
-    const { titulo, descripcion, genero, plataforma } = req.body;
+// ----------------------------------------------------------------- PRIMERA REVISION
 
-    const videojuego = await Videojuego.findByPk(req.params.id);
-    if (!videojuego) {
-      return res.status(404).json({ message: "Videojuego no encontrado" });
-    }
+// // Actualizar un videojuego (con validación de existencia)
+// exports.updateVideojuego = async (req, res) => {
+//   try {
+//     const { titulo, descripcion, genero, plataforma } = req.body;
 
-    await videojuego.update({ titulo, descripcion, genero, plataforma });
-    res.status(200).json(videojuego);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+//     const videojuego = await Videojuego.findByPk(req.params.id);
+//     if (!videojuego) {
+//       return res.status(404).json({ message: "Videojuego no encontrado" });
+//     }
 
-// Eliminar un videojuego (con validación de existencia)
-exports.deleteVideojuego = async (req, res) => {
-  try {
-    const deletedRows = await Videojuego.destroy({
-      where: { id: req.params.id },
-    });
+//     await videojuego.update({ titulo, descripcion, genero, plataforma });
+//     res.status(200).json(videojuego);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// };
 
-    if (!deletedRows) {
-      return res.status(404).json({ message: "Videojuego no encontrado" });
-    }
+// // Eliminar un videojuego (con validación de existencia)
+// exports.deleteVideojuego = async (req, res) => {
+//   try {
+//     const deletedRows = await Videojuego.destroy({
+//       where: { id: req.params.id },
+//     });
 
-    res.status(204).send();
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+//     if (!deletedRows) {
+//       return res.status(404).json({ message: "Videojuego no encontrado" });
+//     }
+
+//     res.status(204).send();
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+module.exports = { getAllVideojuegos, getVideojuegoById, postVideojuego }
