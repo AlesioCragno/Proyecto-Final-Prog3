@@ -4,7 +4,7 @@
   "description": "Backend API with Express and Sequelize",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npx nodemon --exec ts-node app.js",
     "dev": "nodemon --inspect=0.0.0.0:9229 server.js",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
