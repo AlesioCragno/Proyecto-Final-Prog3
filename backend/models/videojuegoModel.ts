@@ -3,7 +3,10 @@ import { DataTypes, Model, Optional } from "sequelize"
 
 import { InterfaceVideojuego } from "../interfaces/videojuegoInterface"
 
-export class Videojuego extends Model<InterfaceVideojuego> implements InterfaceVideojuego {
+type InputVideojuego = Omit<InterfaceVideojuego, "id">
+interface VideojuegoCreationAttributes extends Optional<InterfaceVideojuego, "id"> {}
+
+export class Videojuego extends Model<InterfaceVideojuego, VideojuegoCreationAttributes> implements InterfaceVideojuego {
 
     declare id: number
     declare nombre: string
@@ -22,7 +25,7 @@ export class Videojuego extends Model<InterfaceVideojuego> implements InterfaceV
     }
 
     static async createVideojuego(nombre: string, descripcion: string, genero: string, plataforma: string): Promise<Videojuego> {
-        return await Videojuego.create(nombre, descripcion, genero, plataforma)
+        return await Videojuego.create({nombre, descripcion, genero, plataforma})
     }
 
     static async findLastOne(): Promise<Videojuego | null> {
