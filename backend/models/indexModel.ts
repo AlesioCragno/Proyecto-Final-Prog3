@@ -4,7 +4,7 @@ const config = require("../config/database");
 const env = process.env.NODE_ENV || "development"
 const dbConfig = config[env]
 
-const sequelize = new Sequelize(
+const sequelize = new Sequelize (
     dbConfig.database,
     dbConfig.username,
     dbConfig.password,
@@ -25,3 +25,7 @@ const verificarConexion = async (): Promise<void> => {
         console.error("Error en la base de datos:", error.message)
     }
 }
+
+verificarConexion()
+
+module.exports = {sequelize, Sequelize }

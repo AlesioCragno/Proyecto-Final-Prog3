@@ -4,7 +4,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 require("dotenv").config();
 
-const { sequelize } = require("./models/index");
+const { sequelize } = require("./models/indexModel");
 const routes = require("./routes");
 
 class Server {
@@ -61,7 +61,7 @@ class Server {
 
   async databaseConfig() {
     try {
-      await sequelize.sync({ alter: true });
+      await sequelize.sync({ alter: false });
     } catch (error) {
       console.error("Error configuring database:", error);
     }
