@@ -54,7 +54,7 @@ const postVideojuego = async (req, res, next) => {
     const { nombre, descripcion, genero, plataforma } = req.body;
 
     // Crea un nuevo videojuego en base al modelo
-    Videojuego.create(nombre, descripcion, genero, plataforma);
+    Videojuego.createVideojuego(nombre, descripcion, genero, plataforma);
 
     // Busca el ultimo videojuego (es decir el que se acaba de agregar)
     const videojuegoCreado = Videojuego.findLastOne()
