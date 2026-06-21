@@ -71,38 +71,38 @@ const postVideojuego = async (req, res, next) => {
 
 // ----------------------------------------------------------------- PRIMERA REVISION
 
-// Actualizar un videojuego (con validación de existencia)
-exports.updateVideojuego = async (req, res) => {
-  try {
-    const { titulo, descripcion, genero, plataforma } = req.body;
+// // Actualizar un videojuego (con validación de existencia)
+// exports.updateVideojuego = async (req, res) => {
+//   try {
+//     const { titulo, descripcion, genero, plataforma } = req.body;
 
-    const videojuego = await Videojuego.findByPk(req.params.id);
-    if (!videojuego) {
-      return res.status(404).json({ message: "Videojuego no encontrado" });
-    }
+//     const videojuego = await Videojuego.findByPk(req.params.id);
+//     if (!videojuego) {
+//       return res.status(404).json({ message: "Videojuego no encontrado" });
+//     }
 
-    await videojuego.update({ titulo, descripcion, genero, plataforma });
-    res.status(200).json(videojuego);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+//     await videojuego.update({ titulo, descripcion, genero, plataforma });
+//     res.status(200).json(videojuego);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// };
 
-// Eliminar un videojuego (con validación de existencia)
-exports.deleteVideojuego = async (req, res) => {
-  try {
-    const deletedRows = await Videojuego.destroy({
-      where: { id: req.params.id },
-    });
+// // Eliminar un videojuego (con validación de existencia)
+// exports.deleteVideojuego = async (req, res) => {
+//   try {
+//     const deletedRows = await Videojuego.destroy({
+//       where: { id: req.params.id },
+//     });
 
-    if (!deletedRows) {
-      return res.status(404).json({ message: "Videojuego no encontrado" });
-    }
+//     if (!deletedRows) {
+//       return res.status(404).json({ message: "Videojuego no encontrado" });
+//     }
 
-    res.status(204).send();
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+//     res.status(204).send();
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
 module.exports = { getAllVideojuegos, getVideojuegoById, postVideojuego }
