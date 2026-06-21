@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 3001
 
 # Comando por defecto
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
