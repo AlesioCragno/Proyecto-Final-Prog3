@@ -1,21 +1,21 @@
 const { Router } = require('express');
 const router = Router();
 const { middlewareVideojuegos } = require("../middleware/videojuegosValidator.middleware");
-const videojuegoController = require('../controllers/videojuegoController');
+const { getAllVideojuegos, getVideojuegoById, postVideojuego } = require('../controllers/videojuegoController');
 
 // GET Obtener todos los videojuegos
-router.get('/', videojuegoController.getAllVideojuegos);
+router.get('/', getAllVideojuegos);
 
 // GET Obtener un videojuego por ID
-router.get('/:id', videojuegoController.getVideojuegoById);
+router.get('/:id', getVideojuegoById);
 
 // POST Crear un nuevo videojuego
-router.post('/', middlewareVideojuegos, videojuegoController.createVideojuego);
+router.post('/', postVideojuego);
 
 // PUT Actualizar un videojuego
-router.put('/:id', videojuegoController.updateVideojuego);      // <--- VER SI LA DEJAMOS O NO
+//router.put('/:id', videojuegoController.updateVideojuego);      // <--- VER SI LA DEJAMOS O NO
 
 // DELETE /api/videojuegos/:id - Eliminar un videojuego
-router.delete('/:id', videojuegoController.deleteVideojuego);   // <--- VER SI LA DEJAMOS O NO
+//router.delete('/:id', videojuegoController.deleteVideojuego);   // <--- VER SI LA DEJAMOS O NO
 
 module.exports = router;
