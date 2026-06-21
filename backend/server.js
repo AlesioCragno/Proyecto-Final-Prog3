@@ -5,7 +5,6 @@ const morgan = require("morgan");
 require("dotenv").config();
 
 const { sequelize } = require("./models/index");
-const { sequelize } = require("./models");
 const routes = require("./routes");
 
 class Server {
