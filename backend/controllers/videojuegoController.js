@@ -1,18 +1,22 @@
 const fs = require("fs").promises;
+const { log } = require("console");
 const { Videojuego } = require("../models/videojuegoModel");
 
 // OBTENER TODOS LOS VIDEOJUEGOS
 const getAllVideojuegos = async (req, res, next) => {
   try {
     // Busca los videojuegos
+    console.log("Buscando los videojuegos...");
     const videojuegos = await Videojuego.findAll();
 
     // Gestiona un error si no se encuentran videojuegos
     if (!videojuegos || videojuegos === undefined) {
+      console.log("Videojuegos no encontrados")
       return res.status(404).json({ message: "No se encontraron videojuegos cargados en el sistema"})
     }
 
     // Retorna la lista de videojuegos
+    console.log("Juegos encontrados. Retornando...")
     return res.status(200).json(videojuegos);
 
   } catch (error) {
@@ -27,17 +31,21 @@ const getAllVideojuegos = async (req, res, next) => {
 const getVideojuegoById = async (req, res, next) => {
   try {
     // Obtiene el id de los parametros de la direccion
+    console.log("Obteniendo id de los parametros")
     const { id } = req.params
 
     // Busca el videojuego con la id obtenida
+    console.log("Buscando videojuego con la id obtenida...")
     const videojuego = await Videojuego.findById(id);
 
     // Gestiona un error si no se encuentra el videojuego
     if (!videojuego || videojuego === undefined) {
+      console.log("Videojuego no encontrado")
       return res.status(404).json({ message: "Videojuego no encontrado" });
     }
 
     // Retorna el videojuego buscado
+    console.log("Videojuego encontrado. Retornando...")
     return res.status(200).json(videojuego);
   } catch (error) {
 
@@ -51,15 +59,19 @@ const getVideojuegoById = async (req, res, next) => {
 const postVideojuego = async (req, res, next) => {
   try {
     // Obtiene los atributos del body de la peticion
+    console.log("Obteniendo los atributos del body de la peticion")
     const { nombre, descripcion, genero, plataforma } = req.body;
 
     // Crea un nuevo videojuego en base al modelo
+    console.log("Creando un videojuego con los atributos obtenidos")
     Videojuego.createVideojuego(nombre, descripcion, genero, plataforma);
 
     // Busca el ultimo videojuego (es decir el que se acaba de agregar)
+    console.log("Videojuego creado. Buscandolo para retornarlo...")
     const videojuegoCreado = Videojuego.findLastOne()
 
     // Retorna el juego que se acaba de agregar
+    console.log("Retornando videojuego creado...")
     return res.status(201).json(videojuegoCreado);
   } catch (error) {
 
