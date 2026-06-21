@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 const { Videojuego } = require("../models/videojuegoModel");
 
 // OBTENER TODOS LOS VIDEOJUEGOS
