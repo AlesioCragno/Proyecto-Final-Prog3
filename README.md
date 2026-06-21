@@ -43,59 +43,94 @@ Flujo de trabajo:
 
 ## Distribución de los archivos y carpetas.
 
-### controllers
+### BACKEND:
 
-- 
+### config
+
+- config.js: Configura la conexión a la base de datos postgreSQL para los entornos del desarrollo, pruebas y producción, 
+  utlizando variables de entorno para definir los parámetros de conexión.
+- database.js: Este archivo guarda la configuración para conectarse a la base de datos, usando los datos definidos
+  en las variables de entorno.
 
 ---
 
-### core
+### controllers
 
-
-- 
+- videojuegoController.js: Gestiona las funciones de videojuegos.
+- authController.js: Este archivo es el controlador de autenticación y se encarga de registrar usuarios, 
+  iniciar sesi+on verificando sus credenciales y devolver el perfil del usuario verificado.
 
 ---
 
 ### data
 
+- videojuegos.json: Contiende un listado de todos los videojuegos.
 
+---
+
+### interfaces
+
+- coleccionInterface.ts: Define la estructura que debe tener un objeto de tipo colección, 
+  indicando que datos debe contener y el tipo de cada uno.
+- videojuegoInterface.ts: Define la estructura que debe tener un objeto de tipo videojuego, 
+  indicando que datos debe contener y el tipo de cada uno.
 
 ---
 
 ### middleware
 
-
-
-- 
+- auth.js: Este archivo se encarga de generar y verificar tokens JWT para autenticar usuarios y proteger
+  las rutas de la aplicación.
+- videojuegosValidator.middleware.js: Valida que los datos enviados para un videojuego tengan el tipo
+  correcto antes de continuar con la solicitud. Si encuentra errores, devuelve una respuesta indicando cuales son.
 
 ---
 
 ### models
 
-
-
-- 
-- 
+- index.js: Configura la conexión con la base de datos usando Sequelize e inicializa los modelos de la aplicación
+  para poder utilizarla.
+- User.js: Define el modelo user, establece los datos que debe tener un usuario, encripta su contraseña
+  antes de guardarla y permite verificarla al iniciar sesión.
+- coleccionModel.ts: Define el modelo colección de la base de datos, indicando que datos almacena cada
+  registro y proporcionando métodos para buscar juegos dentro de la colección de un usuario.
+- videojuegoModel.ts: Define el modelo videojuego, especifica los datos que almacena cada videojuego en la base de datos
+  y proporciona métodos para buscar, crear y obtener videojuegos.
+- indexModel.ts: Configura la conexión con la base de datos mediante Sequelize y verifica que la conexión se haya
+  realizado correctamente al iniciarse.
 
 ---
 
 ### routes
 
-
-
-- 
+- auth.js: Define las rutas de autenticación de la API, permitiendo registrar usuarios, iniciar sesión y acceder al perfil
+  de un usuario autentificado.
+- coleccionRoutes.js: Define las rutas para gestionar la colección de videojuegos, permitiendo consultar, modificar
+  y eliminar los juegos asociados a una colección.
+- index.js: Organiza las rutas principales de la API, incluyendo las de autenticación, videojuegos y algunos
+  endpoint de prueba para verificar que el servidor este funcionando correctamente.
+- videojuegoRoutes.js: Define las rutas para gestionar los videojuegos, permitiendo obtener las lista de juegos, 
+  buscar uno por su ID y crear nuevos videojuegos.
 
 ---
 
 ### package.json
 
+- Este archivo define la configuración del proyecto Node.js, incluyendo su información general, las dependencias 
+  que utiliza y los comando para ejecutar, desarrollar y probar la aplicación.
 
+---
+
+### server.js
+
+- Este archivo configura e inicia el servidor Express, establece la conexión con la base de datos, carga los middlewares 
+  y las rutas de la API, y maneja el inicio y cierre de la aplicación.
 
 ---
 
 ### tsconfig.json
 
-
+- Configuración del TypeScript.
 
 ## FUNCIONES
 
