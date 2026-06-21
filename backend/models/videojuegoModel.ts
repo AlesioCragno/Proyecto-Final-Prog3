@@ -31,3 +31,34 @@ export class Videojuego extends Model<InterfaceVideojuego> implements InterfaceV
         })
     }
 }
+
+Videojuego.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        nombre: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        descripcion: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        genero: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        plataforma: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    },
+    {
+        sequelize,
+        tableName: "videojuegos",
+        timestamps: true
+    }
+)

@@ -20,10 +20,10 @@
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
-    "pg": "^8.11.0",
+    "pg": "^8.22.0",
     "pg-hstore": "^2.3.4",
     "redis": "^4.6.7",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
