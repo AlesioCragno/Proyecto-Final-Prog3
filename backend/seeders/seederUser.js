@@ -6,7 +6,7 @@ const ejecutarSeederUsuario = async () => {
         const emailTest = "admin@correo.com";
         const passwordPlana = "Admin1234";
 
-        const usuarioExistente = await Usuario.dinfOne ({ where: { email: emailtest}});
+        const usuarioExistente = await Usuario.findOne ({ where: { email: emailtest}});
 
         if (usuarioExistente) {
             console.log('El usuario ya existe. Seeder salteado.');
