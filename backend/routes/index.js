@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authRoutes = require("./auth");
 const videojuegosRoutes = require("./videojuegoRoutes");
+const coleccionRoutes = require("./coleccionRoutes");
 
 // Ruta de prueba
 router.get("/health", (req, res) => {
@@ -13,11 +14,14 @@ router.get("/health", (req, res) => {
   });
 });
 
-// Rutas de autenticación
+// Rutas de autenticacion
 router.use("/auth", authRoutes);
 
 // Rutas de videojuegos
 router.use("/videojuegos", videojuegosRoutes);
+
+// Rutas de coleccion
+router.use("/colecciones", coleccionRoutes);
 
 // Ruta de ejemplo
 router.get("/test", (req, res) => {

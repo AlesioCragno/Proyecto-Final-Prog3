@@ -12,7 +12,6 @@ const register = async (req, res) => {
     }
 
     // TODO: Crear el usuario en la base de datos usando User.create()
-    // Pista: pasar { nombre, email, password }
     const user = await User.create({ nombre, email, password });
 
     // TODO: Generar un token para el usuario recién creado usando generarToken()
@@ -41,7 +40,7 @@ const login = async (req, res) => {
     }
 
     // TODO: Validar la contraseña usando el método user.validarPassword()
-    const passwordValida = await user.validarPassword(password);
+    const passwordValida = await user.validarContrasenia(password);
 
     if (!passwordValida) {
       return res.status(401).json({ error: "Credenciales inválidas" });
@@ -63,7 +62,6 @@ const login = async (req, res) => {
 const perfil = async (req, res) => {
   try {
     // TODO: Obtener el usuario desde la base de datos usando el id de req.user
-    // Pista: req.user fue seteado por el middleware verificarToken
     const user = await User.findByPk(req.user.id);
 
     if (!user) {
