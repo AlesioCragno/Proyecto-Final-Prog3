@@ -24,7 +24,7 @@ const ejecutarSeederVideojuego = async () => {
 
         await Videojuego.bulkCreate(listaJuegos);
 
-        console.log(`Se cargaron ${listaJuegos.length} videojuegos exitosamente`);
+        console.log(`Se cargaron ${listaJuegos.length} videojuegos exitosamente.`);
     } catch (error) {
         console.error('Error a la hora de ejecutar el seeder de videojuegos', error.message);
     }
