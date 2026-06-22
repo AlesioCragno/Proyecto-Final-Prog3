@@ -26,17 +26,40 @@ Flujo de trabajo:
 4. Revisión de código.
 5. Integración a la rama principal (main).
 
-## División de los archivos entre los integrantes.
+## División de las tareas entre los integrantes.
 
 > **Valentina Vitale y Alesio Cragno**:
 >
 > - Implementacion de videojuegoController.js
 > - Implementacion de videojuegoRoutes.js
 
-> ****:
+> **Andrés Aguayo y Fabricio Maida**:
 >
->
+> - Implementación y diseño de todos los seeders
+> - Implementación y diseño de coleccionesValidator.middleware.js
+> - Implementación de los seeders en server.js
+> - Implementación de colecciones.json
 
+> **Ailén Villalba y Fabricio Maida**:
+>
+> - Implementación de los ToDo's del userModel.ts
+
+> **Fabricio Maida**:
+>
+> - Implementación y diseñado del Diagrama de Entidad/Relación (Diagrama ER Proyecto.png)
+
+> **Andrés Aguayo**:
+>
+> - Implementación y diseño de las interfaces
+> - Implementación de los ToDo's del middleware/auth.js
+> - Implementación de videojuegosValidator.middleware.js
+> - Implementación y migración de modelos a typescript
+> - Configuraciones generales y arreglos varios
+
+> **Ailén Villalba**:
+>
+> - Implementación de coleccionController.js
+> - Implementación de coleccionRoutes.js
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -242,6 +265,11 @@ Flujo de trabajo:
   middlewares de seguridad y procesamiento de solicitudes, `routes()` para definir las rutas de la API y el manejo de errores, `databaseConfig()` 
   para sincronizar los modelos con la base de datos y `startServer()` para verificar la conexión e iniciar el servidor. Además, utiliza `process.on()` 
   para cerrar correctamente la conexión con la base de datos cuando la aplicación finaliza.
+
+---
+
+### DOCUMENTACIÓN DE POSTMAN:
+https://documenter.getpostman.com/view/55388250/2sBXwvL9Vv
 
 -------------------------------------------------------------------------------------------------------------------------------
 
