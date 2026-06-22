@@ -9,6 +9,8 @@ const routes = require("./routes");
 
 const { establecerCardinalidad } = require("./models/cardinalidadesModel");
 
+const { ejecutarSeederVideojuegos } = require("./seeders/seederVideojuego");
+
 class Server {
   constructor() {
     this.app = express();
@@ -67,6 +69,8 @@ class Server {
         await sequelize.sync({ alter: false });
         console.log("✅ Database synchronized");
       }
+
+      await ejecutarSeederVideojuegos();
 
       this.app.listen(this.port, () => {
         console.log(`🚀 Server is running on port ${this.port}`);
