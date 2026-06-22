@@ -1,5 +1,7 @@
 # Grupo 18
+
 #### Integrantes:
+
 > - Andrés Aguayo
 > - Alesio Cragno
 > - Fabricio Maida
@@ -12,7 +14,7 @@ Proyecto base para el trabajo final de Programacion 3. Es una aplicacion web com
 
 **Tu trabajo consiste en completar las partes marcadas con `// TODO` en el backend** (autenticacion JWT) y desarrollar las funcionalidades adicionales que se indiquen.
 
--------------------------------------------------------------------------------------------------------------------------------
+---
 
 ### Metodología de trabajo con Git y GitHub.
 
@@ -30,8 +32,10 @@ Flujo de trabajo:
 
 > **Valentina Vitale y Alesio Cragno**:
 >
+> - Implementacion de TODO's en authController.js
 > - Implementacion de videojuegoController.js
 > - Implementacion de videojuegoRoutes.js
+> - Documentacion en el README.md
 
 > **Andrés Aguayo y Fabricio Maida**:
 >
@@ -61,7 +65,13 @@ Flujo de trabajo:
 > - Implementación de coleccionController.js
 > - Implementación de coleccionRoutes.js
 
--------------------------------------------------------------------------------------------------------------------------------
+---
+
+## Diagrama ER y Modelo Relacional del proyecto:
+
+[Diagrama ER y Modelo Relacional](Diagrama%20ER%20Proyecto.png)
+
+---
 
 ## Distribución de los archivos y carpetas.
 
@@ -69,92 +79,78 @@ Flujo de trabajo:
 
 ### config
 
-- `config.js`: Configura la conexión a la base de datos postgreSQL para los entornos del desarrollo, pruebas y producción, 
-  utlizando variables de entorno para definir los parámetros de conexión.
-- `database.js`: Este archivo guarda la configuración para conectarse a la base de datos, usando los datos definidos
-  en las variables de entorno.
+- `config.js`: Configura la conexión a la base de datos postgreSQL para los entornos del desarrollo, pruebas y producción, utlizando variables de entorno para definir los parámetros de conexión.
+- `database.js`: Este archivo guarda la configuración para conectarse a la base de datos, usando los datos definidos en las variables de entorno.
 
 ---
 
 ### controllers
 
-- `videojuegoController.js`: Este archivo se encarga de manejar las operaciones relacionadas con los videojuegos en la aplicación, permitiendo 
-  consultar la información almacenada y registrar nuevos videojuegos en la base de datos, además de manejar los posibles errores que puedan 
-  ocurrir durante el proceso.
-- `authController.js`: Este archivo es el controlador de autenticación y se encarga de registrar usuarios, 
-  iniciar sesión verificando sus credenciales y devolver el perfil del usuario verificado.
-- `coleccionController`: define el controlador de la colección, encargándose de obtener,    buscar, crear y actualizar los videojuegos que un usuario 
-  tiene en su colección dentro de la base de datos.
+- `videojuegoController.js`: Este archivo se encarga de manejar las operaciones relacionadas con los videojuegos en la aplicación, permitiendo consultar la información almacenada y registrar nuevos videojuegos en la base de datos, además de manejar los posibles errores que puedan ocurrir durante el proceso.
+- `authController.js`: Este archivo es el controlador de autenticación y se encarga de registrar usuarios, iniciar sesión verificando sus credenciales y devolver el perfil del usuario verificado.
+- `coleccionController`: define el controlador de la colección, encargándose de obtener, buscar, crear y actualizar los videojuegos que un usuario tiene en su colección dentro de la base de datos.
 
 ---
 
 ### data
 
 - `videojuegos.json`: Contiende un listado de todos los videojuegos.
+- `colecciones.json`: Contiene la coleccion de juegos de un usuario.
 
 ---
 
 ### interfaces
 
-- `coleccionInterface.ts`: Define la estructura que debe tener un objeto de tipo colección, 
-  indicando que datos debe contener y el tipo de cada uno.
-- `videojuegoInterface.ts`: Define la estructura que debe tener un objeto de tipo videojuego, 
-  indicando que datos debe contener y el tipo de cada uno.
-- `userInterface.ts`: Define la estructura que debe tener un objeto de tipo user, 
-  indicando que datos debe contener y el tipo de cada uno.
+- `coleccionInterface.ts`: Define la estructura que debe tener un objeto de tipo colección, indicando que datos debe contener y el tipo de cada uno.
+- `videojuegoInterface.ts`: Define la estructura que debe tener un objeto de tipo videojuego, indicando que datos debe contener y el tipo de cada uno.
+- `userInterface.ts`: Define la estructura que debe tener un objeto de tipo user, indicando que datos debe contener y el tipo de cada uno.
 
 ---
 
 ### middleware
 
-- `auth.js`: Este archivo se encarga de generar y verificar tokens JWT para autenticar usuarios y proteger
-  las rutas de la aplicación.
-- `videojuegosValidator.middleware.js`: Valida que los datos enviados para un videojuego tengan el tipo
-  correcto antes de continuar con la solicitud. Si encuentra errores, devuelve una respuesta indicando cuales son.
+- `auth.js`: Este archivo se encarga de generar y verificar tokens JWT para autenticar usuarios y proteger las rutas de la aplicación.
+- `videojuegosValidator.middleware.js`: Valida que los datos enviados para un videojuego tengan el tipo correcto antes de continuar con la solicitud. Si encuentra errores, devuelve una respuesta indicando cuales son.
+- `coleccionesValidator.middleware.js`: Se encarga de validar que los datos de una colección de videojuegos sean correctos antes de procesarlos, y si encuentra algún dato inválido devuelve un mensaje de error.
 
 ---
 
 ### models
 
-- `cardinalidadesModel.ts`: Define la relación entre los modelos User, Videojuego y Coleccion, estableciendo que un usuario puede tener 
-  muchos videojuegos y que un videojuego puede pertenecer a muchos usuarios, utilizando la tabla Coleccion como intermediaria.
-- `userModel.ts`: Define el modelo User, que representa a los usuarios de la aplicación y establece los datos que se almacenan en la base de 
-  datos. Además, incluye lógica para encriptar la contraseña antes de guardarla, validarla al iniciar sesión y evitar que se exponga cuando
-  se devuelve la información del usuario.
-- `coleccionModel.ts`: Define el modelo colección de la base de datos, indicando que datos almacena cada
-  registro y proporcionando métodos para buscar juegos dentro de la colección de un usuario.
-- `videojuegoModel.ts`: Define el modelo videojuego, especifica los datos que almacena cada videojuego en la base de datos
-  y proporciona métodos para buscar, crear y obtener videojuegos.
-- `indexModel.ts`: Configura la conexión con la base de datos mediante Sequelize y verifica que la conexión se haya
-  realizado correctamente al iniciarse.
+- `cardinalidadesModel.ts`: Define la relación entre los modelos User, Videojuego y Coleccion, estableciendo que un usuario puede tener muchos videojuegos y que un videojuego puede pertenecer a muchos usuarios, utilizando la tabla Coleccion como intermediaria.
+- `userModel.ts`: Define el modelo User, que representa a los usuarios de la aplicación y establece los datos que se almacenan en la base de datos. Además, incluye lógica para encriptar la contraseña antes de guardarla, validarla al iniciar sesión y evitar que se exponga cuando se devuelve la información del usuario.
+- `coleccionModel.ts`: Define el modelo colección de la base de datos, indicando que datos almacena cada registro y proporcionando métodos para buscar juegos dentro de la colección de un usuario.
+- `videojuegoModel.ts`: Define el modelo videojuego, especifica los datos que almacena cada videojuego en la base de datos y proporciona métodos para buscar, crear y obtener videojuegos.
+- `indexModel.ts`: Configura la conexión con la base de datos mediante Sequelize y verifica que la conexión se haya realizado correctamente al iniciarse.
 
 ---
 
 ### routes
 
-- `auth.js`: Define las rutas de autenticación de la API, permitiendo registrar usuarios, iniciar sesión y acceder al perfil
-  de un usuario autentificado.
-- `coleccionRoutes.js`: Define las rutas para gestionar la colección de videojuegos, permitiendo consultar, modificar
-  y eliminar los juegos asociados a una colección.
-- `videojuegoRoutes.js`: Define las rutas para gestionar los videojuegos, permitiendo obtener las lista de juegos, 
-  buscar uno por su ID y crear nuevos videojuegos.
-- `index.js`: Centraliza las rutas principales de la API utilizando `router.get()` para definir endpoints de prueba y verificación 
-  del servidor, `router.use()` para incorporar las rutas de autenticación y videojuegos, y `module.exports` para exportar el enrutador 
-  y utilizarlo en el resto de la aplicación.
+- `auth.js`: Define las rutas de autenticación de la API, permitiendo registrar usuarios, iniciar sesión y acceder al perfil de un usuario autentificado.
+- `coleccionRoutes.js`: Define las rutas para gestionar la colección de videojuegos, permitiendo consultar, modificar y eliminar los juegos asociados a una colección.
+- `videojuegoRoutes.js`: Define las rutas para gestionar los videojuegos, permitiendo obtener las lista de juegos, buscar uno por su ID y crear nuevos videojuegos.
+- `index.js`: Centraliza las rutas principales de la API utilizando `router.get()` para definir endpoints de prueba y verificación del servidor, `router.use()` para incorporar las rutas de autenticación y videojuegos, y `module.exports` para exportar el enrutador y utilizarlo en el resto de la aplicación.
+
+---
+
+### seeders
+
+- `seederColeccion.js`: Carga datos iniciales de colecciones en la base de datos a partir de un archivo JSON, verificando primero si ya existen registros para evitar duplicarlos.
+- `seederUser.js`: Carga automáticamente un usuario inicial en la base de datos para que la aplicación tenga un usuario de prueba. Antes de crearlo verifica si ya existe un usuario con ese email y si no existe, lo crea con los datos definidos; si ya está creado, evita duplicarlo e informa el resultado por consola.
+- `seederVideojuego.js`: Se encarga de cargar automáticamente videojuegos iniciales en la base de datos leyendo un archivo videojuegos.json. Antes de insertarlos verifica si ya existen registros para evitar duplicarlos y si la carga es correcta los agrega todos de una vez utilizando bulkCreate.
 
 ---
 
 ### package.json
 
-- Este archivo define la configuración del proyecto Node.js, incluyendo su información general, las dependencias 
-  que utiliza y los comando para ejecutar, desarrollar y probar la aplicación.
+- Este archivo define la configuración del proyecto Node.js, incluyendo su información general, las dependencias que utiliza y los comando para ejecutar, desarrollar y probar la aplicación.
 
 ---
 
 ### server.js
 
-- Este archivo configura e inicia el servidor Express, establece la conexión con la base de datos, carga los middlewares 
-  y las rutas de la API, y maneja el inicio y cierre de la aplicación.
+- Este archivo configura e inicia el servidor Express, establece la conexión con la base de datos, carga los middlewares y las rutas de la API, y maneja el inicio y cierre de la aplicación.
 
 ---
 
@@ -162,116 +158,112 @@ Flujo de trabajo:
 
 - Configuración del TypeScript.
 
--------------------------------------------------------------------------------------------------------------------------------
+---
 
 #### FUNCIONES:
 
 ### controllers
 
 > videojuegoController.js:
+
 - `getAllVideojuegos`: Se encarga de traer y mostrar la lista completa de videojuegos guardados.
 - `getVideojuegoById`: Busca un videojuego específico utilizando su ID.
 - `postVideojuego`: Recibe datos para guardar un nuevo videojuego en el sistema.
 
-> authController.js: 
+> authController.js:
+
 - `register`: Permite a un nuevo usuario crear una cuenta en la aplicación.
 - `login`: Valida las credenciales de un usuario que ya tiene cuenta para darle acceso.
 - `perfil`: Devuelve la información del usuario que está haciendo la consulta, siempre y cuando ya esté autenticado.
 
 > coleccionController.js:
+
 - `getAllColecciones`: Trae todos los registros de colecciones almacenados en el sistema sin filtrar y los devuelve con un estado 200.
-- `getAllColeccionesUsuario`: Busca todos los videojuegos que pertenecen a un usuario específico. Extrae el `userId` de los parámetros 
-  de la URL, consulta a la base de datos y, si encuentra datos, los devuelve. Si no encuentra nada, retorna un error 404.
-- `getColeccionById`: Busca un registro exacto de un usuario con un videojuego en particular. Combina el `userId` (que viene en la URL) 
-  con el `videojuegoId` (que curiosamente viaja en el cuerpo del `req.body`) para verificar si esa vinculación existe.
-- `postColeccion`: Añade un videojuego a la biblioteca de un usuario. Recibe los datos del juego y del usuario junto con datos extra
-  (estado, calificacion, tiempoJuego) y ejecuta un método para insertarlo en la base de datos.
-- `putColeccion`: Modifica los detalles de un juego que el usuario ya tenía en su colección (por ejemplo, si le quiere cambiar la 
-  calificación o sumarle horas de juego). Identifica la colección mediante el `userId` y `videojuegoId`, verifica que exista y luego 
-  actualiza los campos permitidos (estado, calificacion, tiempoJuego) usando `.update().`
+- `getAllColeccionesUsuario`: Busca todos los videojuegos que pertenecen a un usuario específico. Extrae el `userId` de los parámetros de la URL, consulta a la base de datos y, si encuentra datos, los devuelve. Si no encuentra nada, retorna un error 404.
+- `getColeccionById`: Busca un registro exacto de un usuario con un videojuego en particular. Combina el `userId` (que viene en la URL) con el `videojuegoId` (que curiosamente viaja en el cuerpo del `req.body`) para verificar si esa vinculación existe.
+- `postColeccion`: Añade un videojuego a la biblioteca de un usuario. Recibe los datos del juego y del usuario junto con datos extra (estado, calificacion, tiempoJuego) y ejecuta un método para insertarlo en la base de datos.
+- `putColeccion`: Modifica los detalles de un juego que el usuario ya tenía en su colección (por ejemplo, si le quiere cambiar la calificación o sumarle horas de juego). Identifica la colección mediante el `userId` y `videojuegoId`, verifica que exista y luego actualiza los campos permitidos (estado, calificacion, tiempoJuego) usando `.update().`
 
 ---
 
 ### middleware
 
 > auth.js:
-- `generarToken`: Es la función que crea el token cuando el usuario se registra o inicia sesión con éxito. Toma el id y el email del 
-  usuario y los firma, cifrandolos con una clave secreta. Además, le configura un tiempo de vencimiento de 24 horas.
-- `verificarToken`: protege rutas privadas extrayendo el token del encabezado authorization y validando su autenticidad con jwt.verify().
-  Si el token expiró o es inválido, interrumpe el flujo con un estado 401, de lo contrario, guarda los datos decodificados en req.user y 
-  ejecuta next() para dar paso al controlador.
+
+- `generarToken`: Es la función que crea el token cuando el usuario se registra o inicia sesión con éxito. Toma el id y el email del usuario y los firma, cifrandolos con una clave secreta. Además, le configura un tiempo de vencimiento de 24 horas.
+- `verificarToken`: protege rutas privadas extrayendo el token del encabezado authorization y validando su autenticidad con jwt.verify(). Si el token expiró o es inválido, interrumpe el flujo con un estado 401, de lo contrario, guarda los datos decodificados en req.user y ejecuta next() para dar paso al controlador.
 
 > videojuegosValidator.middleware.js:
-- `validateInputVideojuegos(req, res, next)`: encargado de inspeccionar las peticiones entrantes validando que los campos opcionales del 
-  cuerpo (nombre, descripcion, genero y plataforma) correspondan estrictamente al tipo de dato string. Si se detecta alguna diferencia de tipo, 
-  interrumpe el flujo acumulando los fallos y respondiendo con un estado 400, en caso contrario, next() transfiere el control al controlador de 
-  la ruta.
+
+- `validateInputVideojuegos(req, res, next)`: encargado de inspeccionar las peticiones entrantes validando que los campos opcionales del cuerpo (nombre, descripcion, genero y plataforma) correspondan estrictamente al tipo de dato string. Si se detecta alguna diferencia de tipo, interrumpe el flujo acumulando los fallos y respondiendo con un estado 400, en caso contrario, next() transfiere el control al controlador de la ruta.
+
+> coleccionesValidator.middleware.js:
+
+- valida los datos recibidos antes de agregar o modificar una colección de videojuegos. Revisa que `videojuegoId` sea un número válido al crear una nueva colección, que estado tenga uno de los valores permitidos (pendiente, jugando o completado), que calificacion esté entre 0 y 10 y que `tiempoJuego` sea un número positivo. Si encuentra errores, los devuelve con una respuesta `400`; si todo es correcto, ejecuta `next()` para que la solicitud continúe al siguiente paso.
 
 ---
 
 ### models
 
 > cardinalidadesModel.ts:
-- La función `establecerCardinalidad()` conecta las tablas de la base de datos configurando una relación de muchos a muchos entre `Usuarios` y 
-  `Videojuegos` a través del método `belongsToMany`. Establece que un usuario puede tener múltiples videojuegos y un videojuego pertenecer a múltiples
-  usuarios, utilizando el modelo intermedio `Coleccion` (con sus llaves userId y videojuegoId) como el puente organizado para vincular ambas tablas. 
+
+- La función `establecerCardinalidad()` conecta las tablas de la base de datos configurando una relación de muchos a muchos entre `Usuarios` y `Videojuegos` a través del método `belongsToMany`. Establece que un usuario puede tener múltiples videojuegos y un videojuego pertenecer a múltiples usuarios, utilizando el modelo intermedio `Coleccion` (con sus llaves userId y videojuegoId) como el puente organizado para vincular ambas tablas.
 
 > userModel.ts:
-- Este archivo utiliza `User.init()` para definir la estructura del modelo User en la base de datos, implementa el método `validarContrasenia()` para 
-  comprobar si una contraseña coincide con la almacenada mediante `bcrypt.compare()`, redefine `toJSON()` para ocultar la contraseña al devolver los 
-  datos del usuario y emplea el hook `beforeCreate` junto con `bcrypt.hash()` para encriptar la contraseña antes de guardarla en la base de datos.
 
-> coleccionModel.ts: 
-- Define la tabla colecciones en la base de datos, la cual sirve para unir a los usuarios con sus videojuegos. Utiliza los identificadores userId 
-  y videojuegoId como una llave doble para saber a quién le pertenece cada juego, y guarda detalles de la partida como el estado (pendiente, jugando
-  o completado), la nota y el tiempo jugado. Además, incluye funciones rápidas para buscar directamente las colecciones completas de un usuario o un 
-  juego específico en su biblioteca.
+- Este archivo utiliza `User.init()` para definir la estructura del modelo User en la base de datos, implementa el método `validarContrasenia()` para comprobar si una contraseña coincide con la almacenada mediante `bcrypt.compare()`, redefine `toJSON()` para ocultar la contraseña al devolver los datos del usuario y emplea el hook `beforeCreate` junto con `bcrypt.hash()` para encriptar la contraseña antes de guardarla en la base de datos.
+
+> coleccionModel.ts:
+
+- Define la tabla colecciones en la base de datos, la cual sirve para unir a los usuarios con sus videojuegos. Utiliza los identificadores userId y videojuegoId como una llave doble para saber a quién le pertenece cada juego, y guarda detalles de la partida como el estado (pendiente, jugando o completado), la nota y el tiempo jugado. Además, incluye funciones rápidas para buscar directamente las colecciones completas de un usuario o un juego específico en su biblioteca.
 
 > videojuegoModel.ts:
-- Este archivo utiliza `Videojuego.init()` para definir la estructura del modelo Videojuego en la base de datos y crea métodos como `findAllVideogames()`, 
-  `findById()`, `createVideojuego()` y `findLastOne()` para obtener, buscar, crear y consultar videojuegos mediante Sequelize.
 
-> indexModel.ts: 
-- Este archivo utiliza `new Sequelize()` para crear la conexión con la base de datos a partir de la configuración del entorno, implementa la función 
-  `verificarConexion()` para comprobar que la conexión se haya realizado correctamente mediante `sequelize.authenticate()` y exporta la instancia de 
-  sequelize y Sequelize para que puedan utilizarse en el resto de la aplicación.
+- Este archivo utiliza `Videojuego.init()` para definir la estructura del modelo Videojuego en la base de datos y crea métodos como `findAllVideogames()`, `findById()`, `createVideojuego()` y `findLastOne()` para obtener, buscar, crear y consultar videojuegos mediante Sequelize.
+
+> indexModel.ts:
+
+- Este archivo utiliza `new Sequelize()` para crear la conexión con la base de datos a partir de la configuración del entorno, implementa la función `verificarConexion()` para comprobar que la conexión se haya realizado correctamente mediante `sequelize.authenticate()` y exporta la instancia de sequelize y Sequelize para que puedan utilizarse en el resto de la aplicación.
 
 ---
 
 ### routes
 
 > auth.js:
-- Este archivo utiliza `router.post()` para definir las rutas de registro e inicio de sesión, `router.get()` para acceder al perfil del usuario y el 
-  middleware `verificarToken` para proteger esa ruta, exportando finalmente todas las rutas de autenticación para que puedan ser usadas por la aplicación.
+
+- Este archivo utiliza `router.post()` para definir las rutas de registro e inicio de sesión, `router.get()` para acceder al perfil del usuario y el middleware `verificarToken` para proteger esa ruta, exportando finalmente todas las rutas de autenticación para que puedan ser usadas por la aplicación.
 
 > coleccionRoutes.js:
-- Este archivo utiliza `router.get()`, `router.post()` y `outer.put()` para definir las rutas relacionadas con la colección de videojuegos, permitiendo
-  obtener las colecciones, consultar una colección específica, agregar videojuegos y actualizar la información de una colección, enlazando cada ruta con su
-  función correspondiente del controlador.
+
+- Este archivo utiliza `router.get()`, `router.post()` y `outer.put()` para definir las rutas relacionadas con la colección de videojuegos, permitiendo obtener las colecciones, consultar una colección específica, agregar videojuegos y actualizar la información de una colección, enlazando cada ruta con su función correspondiente del controlador.
 
 > index.js:
-- Este archivo utiliza `new Sequelize()` para crear la conexión con la base de datos a partir de la configuración del entorno, inicializa el modelo `User` 
-  mediante `UserModel(sequelize)` y exporta la conexión y los modelos con `module.exports` para que puedan ser utilizados en el resto de la aplicación.
+
+- Este archivo utiliza `new Sequelize()` para crear la conexión con la base de datos a partir de la configuración del entorno, inicializa el modelo `User` mediante `UserModel(sequelize)` y exporta la conexión y los modelos con `module.exports` para que puedan ser utilizados en el resto de la aplicación.
 
 > videojuegoRoutes.js:
-- Este archivo utiliza `router.get()` para definir las rutas que permiten obtener todos los videojuegos o buscar uno por su ID, `router.post()` para crear 
-  un nuevo videojuego y `module.exports` para exportar el conjunto de rutas y que puedan ser utilizadas por la aplicación.
+
+- Este archivo utiliza `router.get()` para definir las rutas que permiten obtener todos los videojuegos o buscar uno por su ID, `router.post()` para crear un nuevo videojuego y `module.exports` para exportar el conjunto de rutas y que puedan ser utilizadas por la aplicación.
 
 ---
 
 ### server.js
 
-- Este archivo utiliza la clase `Server` para configurar e iniciar el servidor `Express`. EN ella emplea `middleware()` para registrar los 
-  middlewares de seguridad y procesamiento de solicitudes, `routes()` para definir las rutas de la API y el manejo de errores, `databaseConfig()` 
-  para sincronizar los modelos con la base de datos y `startServer()` para verificar la conexión e iniciar el servidor. Además, utiliza `process.on()` 
-  para cerrar correctamente la conexión con la base de datos cuando la aplicación finaliza.
+- Este archivo utiliza la clase `Server` para configurar e iniciar el servidor `Express`. EN ella emplea `middleware()` para registrar los middlewares de seguridad y procesamiento de solicitudes, `routes()` para definir las rutas de la API y el manejo de errores, `databaseConfig()` para sincronizar los modelos con la base de datos y `startServer()` para verificar la conexión e iniciar el servidor. Además, utiliza `process.on()` para cerrar correctamente la conexión con la base de datos cuando la aplicación finaliza.
+
+---
+
+### LINK DEL RENDER:
+
+https://proyecto-final-prog3.onrender.com/
 
 ---
 
 ### DOCUMENTACIÓN DE POSTMAN:
+
 https://documenter.getpostman.com/view/55388250/2sBXwvL9Vv
 
--------------------------------------------------------------------------------------------------------------------------------
+---
 
 ## Arquitectura General
 
@@ -291,14 +283,14 @@ https://documenter.getpostman.com/view/55388250/2sBXwvL9Vv
 
 Todos los servicios corren dentro de contenedores Docker y se comunican a traves de una red interna (`app_network`). Caddy actua como reverse proxy: recibe todo el trafico en el puerto 80 y lo redirige al frontend o al backend segun la URL.
 
-| Servicio | Tecnologia | Puerto | Funcion |
-|----------|------------|--------|---------|
-| **Frontend** | React 18 | 3000 | Interfaz de usuario |
-| **Backend** | Express + Sequelize | 3001 | API REST |
-| **Database** | PostgreSQL 15 | 5432 | Base de datos relacional |
-| **Cache** | Redis 7 | 6379 | Cache y sesiones |
-| **Proxy** | Caddy 2 | 80 | Reverse proxy |
-| **pgAdmin** | pgAdmin 4 | 5050 | Administracion visual de la BD |
+| Servicio     | Tecnologia          | Puerto | Funcion                        |
+| ------------ | ------------------- | ------ | ------------------------------ |
+| **Frontend** | React 18            | 3000   | Interfaz de usuario            |
+| **Backend**  | Express + Sequelize | 3001   | API REST                       |
+| **Database** | PostgreSQL 15       | 5432   | Base de datos relacional       |
+| **Cache**    | Redis 7             | 6379   | Cache y sesiones               |
+| **Proxy**    | Caddy 2             | 80     | Reverse proxy                  |
+| **pgAdmin**  | pgAdmin 4           | 5050   | Administracion visual de la BD |
 
 ---
 
@@ -320,13 +312,13 @@ docker-compose up
 
 Una vez que todo este corriendo, podes acceder a:
 
-| Recurso | URL |
-|---------|-----|
-| Frontend (React) | http://localhost:3000 |
-| Backend API | http://localhost:3001/api |
-| Health check | http://localhost:3001/health |
-| Proxy (Caddy) | http://localhost |
-| pgAdmin | http://localhost:5050 |
+| Recurso          | URL                          |
+| ---------------- | ---------------------------- |
+| Frontend (React) | http://localhost:3000        |
+| Backend API      | http://localhost:3001/api    |
+| Health check     | http://localhost:3001/health |
+| Proxy (Caddy)    | http://localhost             |
+| pgAdmin          | http://localhost:5050        |
 
 > **Tip:** Si queres correrlo en segundo plano, usa `docker-compose up -d`. Para ver los logs: `docker-compose logs -f`.
 
@@ -419,11 +411,11 @@ El sistema de autenticacion esta parcialmente implementado. Hay **8 TODOs** dist
 
 ### Endpoints de la API
 
-| Metodo | Ruta | Protegida | Descripcion |
-|--------|------|-----------|-------------|
-| `POST` | `/api/auth/register` | No | Registrar un nuevo usuario |
-| `POST` | `/api/auth/login` | No | Iniciar sesion |
-| `GET` | `/api/auth/perfil` | Si | Obtener datos del usuario logueado |
+| Metodo | Ruta                 | Protegida | Descripcion                        |
+| ------ | -------------------- | --------- | ---------------------------------- |
+| `POST` | `/api/auth/register` | No        | Registrar un nuevo usuario         |
+| `POST` | `/api/auth/login`    | No        | Iniciar sesion                     |
+| `GET`  | `/api/auth/perfil`   | Si        | Obtener datos del usuario logueado |
 
 #### Ejemplo: Registro
 
@@ -434,6 +426,7 @@ curl -X POST http://localhost:3001/api/auth/register \
 ```
 
 Respuesta esperada (una vez completados los TODOs):
+
 ```json
 {
   "message": "Usuario registrado exitosamente",
@@ -599,14 +592,14 @@ docker-compose exec database psql -U app_user -d app_database
 
 ### Credenciales de la BD
 
-| Campo | Valor |
-|-------|-------|
-| Host (desde otro contenedor) | `database` |
-| Host (desde tu maquina) | `localhost` |
-| Puerto | `5432` |
-| Base de datos | `app_database` |
-| Usuario | `app_user` |
-| Password | `app_password` |
+| Campo                        | Valor          |
+| ---------------------------- | -------------- |
+| Host (desde otro contenedor) | `database`     |
+| Host (desde tu maquina)      | `localhost`    |
+| Puerto                       | `5432`         |
+| Base de datos                | `app_database` |
+| Usuario                      | `app_user`     |
+| Password                     | `app_password` |
 
 ### Migraciones y Seeders con Sequelize
 
@@ -654,16 +647,16 @@ docker-compose exec -T database psql -U app_user -d app_database < backup.sql
 
 Las variables de entorno del backend estan definidas directamente en `docker-compose.yml`, dentro del servicio `backend`. Las mas importantes son:
 
-| Variable | Valor | Descripcion |
-|----------|-------|-------------|
-| `NODE_ENV` | `development` | Entorno de ejecucion |
-| `PORT` | `3001` | Puerto del servidor Express |
-| `DB_HOST` | `database` | Nombre del servicio de PostgreSQL en Docker |
-| `DB_PORT` | `5432` | Puerto de PostgreSQL |
-| `DB_NAME` | `app_database` | Nombre de la base de datos |
-| `DB_USER` | `app_user` | Usuario de la BD |
-| `DB_PASSWORD` | `app_password` | Password de la BD |
-| `JWT_SECRET` | `your_jwt_secret_here` | Clave secreta para firmar los tokens JWT |
+| Variable      | Valor                   | Descripcion                                   |
+| ------------- | ----------------------- | --------------------------------------------- |
+| `NODE_ENV`    | `development`           | Entorno de ejecucion                          |
+| `PORT`        | `3001`                  | Puerto del servidor Express                   |
+| `DB_HOST`     | `database`              | Nombre del servicio de PostgreSQL en Docker   |
+| `DB_PORT`     | `5432`                  | Puerto de PostgreSQL                          |
+| `DB_NAME`     | `app_database`          | Nombre de la base de datos                    |
+| `DB_USER`     | `app_user`              | Usuario de la BD                              |
+| `DB_PASSWORD` | `app_password`          | Password de la BD                             |
+| `JWT_SECRET`  | `your_jwt_secret_here`  | Clave secreta para firmar los tokens JWT      |
 | `CORS_ORIGIN` | `http://localhost:3000` | Origen permitido para peticiones del frontend |
 
 > **Nota:** En un entorno de produccion, estas variables **nunca** deben estar en el codigo ni en el repositorio. Se usan archivos `.env` o secrets de Docker.
@@ -747,7 +740,7 @@ Podes cambiar el puerto externo en `docker-compose.yml`. Por ejemplo, para mover
 
 ```yaml
 ports:
-  - "3002:3000"  # externo:interno
+  - "3002:3000" # externo:interno
 ```
 
 ### Hot reload no funciona
@@ -791,6 +784,7 @@ docker-compose build
 ## Tecnologias Utilizadas
 
 ### Backend
+
 - **[Express](https://expressjs.com/)** — Framework web para Node.js
 - **[Sequelize](https://sequelize.org/)** — ORM para bases de datos SQL
 - **[jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)** — Generacion y verificacion de JWT
@@ -800,6 +794,7 @@ docker-compose build
 - **[morgan](https://github.com/expressjs/morgan)** — Logging de peticiones HTTP
 
 ### Frontend
+
 - **[React 18](https://react.dev/)** — Biblioteca para interfaces de usuario
 - **[React Router](https://reactrouter.com/)** — Navegacion SPA
 - **[Axios](https://axios-http.com/)** — Cliente HTTP
@@ -808,6 +803,7 @@ docker-compose build
 - **[Tailwind CSS](https://tailwindcss.com/)** — Framework de estilos utilitario
 
 ### Infraestructura
+
 - **[Docker](https://docs.docker.com/)** — Contenedores
 - **[Docker Compose](https://docs.docker.com/compose/)** — Orquestacion multi-contenedor
 - **[PostgreSQL 15](https://www.postgresql.org/docs/15/)** — Base de datos relacional
@@ -816,6 +812,7 @@ docker-compose build
 - **[pgAdmin 4](https://www.pgadmin.org/docs/)** — Administracion visual de PostgreSQL
 
 ---
+
 ---
 
 # Secciones Opcionales / Avanzadas
@@ -920,12 +917,12 @@ Tu PC (IP cambia) → Cliente DDNS avisa → Servicio DDNS actualiza → Dominio
 
 ### Servicios DDNS gratuitos
 
-| Servicio | Subdominio que te dan | Notas |
-|----------|----------------------|-------|
-| [Duck DNS](https://www.duckdns.org/) | `tunombre.duckdns.org` | Gratuito, simple, popular |
-| [No-IP](https://www.noip.com/) | `tunombre.ddns.net` | Gratuito con renovacion mensual |
-| [Dynu](https://www.dynu.com/) | `tunombre.dynu.net` | Gratuito, soporta dominios propios |
-| [Afraid.org](https://freedns.afraid.org/) | Varios disponibles | Gratuito, muchas opciones de subdominio |
+| Servicio                                  | Subdominio que te dan  | Notas                                   |
+| ----------------------------------------- | ---------------------- | --------------------------------------- |
+| [Duck DNS](https://www.duckdns.org/)      | `tunombre.duckdns.org` | Gratuito, simple, popular               |
+| [No-IP](https://www.noip.com/)            | `tunombre.ddns.net`    | Gratuito con renovacion mensual         |
+| [Dynu](https://www.dynu.com/)             | `tunombre.dynu.net`    | Gratuito, soporta dominios propios      |
+| [Afraid.org](https://freedns.afraid.org/) | Varios disponibles     | Gratuito, muchas opciones de subdominio |
 
 ### Ejemplo completo con Duck DNS
 
@@ -993,13 +990,13 @@ AWS tiene un programa llamado **Free Tier** (nivel gratuito) que permite usar va
 
 ### Que incluye el Free Tier (lo mas relevante para este proyecto)
 
-| Servicio | Que te da gratis | Duracion |
-|----------|-----------------|----------|
-| **EC2** (servidor virtual) | 750 horas/mes de instancia `t2.micro` o `t3.micro` (1 vCPU, 1 GB RAM) | 12 meses |
-| **RDS** (base de datos) | 750 horas/mes de instancia `db.t3.micro` con 20 GB de almacenamiento | 12 meses |
-| **S3** (almacenamiento) | 5 GB de almacenamiento, 20.000 requests GET, 2.000 PUT | 12 meses |
-| **Elastic IP** | 1 IP publica gratuita **mientras este asociada a una instancia corriendo** | 12 meses |
-| **Data Transfer** | 100 GB de salida a internet por mes | 12 meses |
+| Servicio                   | Que te da gratis                                                           | Duracion |
+| -------------------------- | -------------------------------------------------------------------------- | -------- |
+| **EC2** (servidor virtual) | 750 horas/mes de instancia `t2.micro` o `t3.micro` (1 vCPU, 1 GB RAM)      | 12 meses |
+| **RDS** (base de datos)    | 750 horas/mes de instancia `db.t3.micro` con 20 GB de almacenamiento       | 12 meses |
+| **S3** (almacenamiento)    | 5 GB de almacenamiento, 20.000 requests GET, 2.000 PUT                     | 12 meses |
+| **Elastic IP**             | 1 IP publica gratuita **mientras este asociada a una instancia corriendo** | 12 meses |
+| **Data Transfer**          | 100 GB de salida a internet por mes                                        | 12 meses |
 
 > 750 horas/mes = suficiente para tener **1 instancia corriendo 24/7** todo el mes (un mes tiene ~730 horas).
 
@@ -1008,6 +1005,7 @@ AWS tiene un programa llamado **Free Tier** (nivel gratuito) que permite usar va
 EC2 (Elastic Compute Cloud) es el servicio de servidores virtuales de AWS. Cada servidor se llama **instancia**. Una instancia es basicamente una computadora en la nube con Linux (o Windows) donde podes instalar lo que quieras.
 
 La instancia `t2.micro` del Free Tier tiene:
+
 - 1 vCPU
 - 1 GB de RAM
 - 8 GB de disco (ampliable hasta 30 GB gratis)
@@ -1100,9 +1098,9 @@ Si tenes un dominio o un DDNS, podes apuntarlo a la IP publica de tu instancia E
 
 Si AWS te parece complejo o no queres poner una tarjeta de credito, hay alternativas con planes gratuitos mas simples:
 
-| Plataforma | Plan gratuito | Ideal para |
-|------------|--------------|------------|
-| [Railway](https://railway.app/) | $5 USD de credito/mes | Deploy rapido con Docker |
-| [Render](https://render.com/) | Servicios web gratuitos (se apagan por inactividad) | Proyectos simples |
-| [Fly.io](https://fly.io/) | 3 VMs compartidas gratuitas | Contenedores Docker |
+| Plataforma                                         | Plan gratuito                                                        | Ideal para                               |
+| -------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------- |
+| [Railway](https://railway.app/)                    | $5 USD de credito/mes                                                | Deploy rapido con Docker                 |
+| [Render](https://render.com/)                      | Servicios web gratuitos (se apagan por inactividad)                  | Proyectos simples                        |
+| [Fly.io](https://fly.io/)                          | 3 VMs compartidas gratuitas                                          | Contenedores Docker                      |
 | [Oracle Cloud](https://www.oracle.com/cloud/free/) | 2 instancias ARM gratuitas **para siempre** (4 CPU, 24 GB RAM total) | Alternativa a EC2 sin limite de 12 meses |
