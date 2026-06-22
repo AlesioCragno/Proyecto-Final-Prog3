@@ -1,5 +1,3 @@
-const fs = require("fs").promises;
-const { log } = require("console");
 const { Videojuego } = require("../models/videojuegoModel");
 
 // OBTENER TODOS LOS VIDEOJUEGOS
@@ -10,7 +8,7 @@ const getAllVideojuegos = async (req, res, next) => {
     const videojuegos = await Videojuego.findAll();
 
     // Gestiona un error si no se encuentran videojuegos
-    if (!videojuegos || videojuegos === undefined) {
+    if (!videojuegos || videojuegos.length === 0) {
       console.log("Videojuegos no encontrados")
       return res.status(404).json({ message: "No se encontraron videojuegos cargados en el sistema"})
     }
@@ -18,7 +16,6 @@ const getAllVideojuegos = async (req, res, next) => {
     // Retorna la lista de videojuegos
     console.log("Juegos encontrados. Retornando...")
     return res.status(200).json(videojuegos);
-
   } catch (error) {
 
     // Imprime por consola el error y lo envia al handler
@@ -39,7 +36,7 @@ const getVideojuegoById = async (req, res, next) => {
     const videojuego = await Videojuego.findById(id);
 
     // Gestiona un error si no se encuentra el videojuego
-    if (!videojuego || videojuego === undefined) {
+    if (!videojuego) {
       console.log("Videojuego no encontrado")
       return res.status(404).json({ message: "Videojuego no encontrado" });
     }
@@ -64,15 +61,11 @@ const postVideojuego = async (req, res, next) => {
 
     // Crea un nuevo videojuego en base al modelo
     console.log("Creando un videojuego con los atributos obtenidos")
-    Videojuego.createVideojuego(nombre, descripcion, genero, plataforma);
-
-    // Busca el ultimo videojuego (es decir el que se acaba de agregar)
-    console.log("Videojuego creado. Buscandolo para retornarlo...")
-    const videojuegoCreado = Videojuego.findLastOne()
+    const nuevoVideojuego = await Videojuego.createVideojuego(nombre, descripcion, genero, plataforma);
 
     // Retorna el juego que se acaba de agregar
     console.log("Retornando videojuego creado...")
-    return res.status(201).json(videojuegoCreado);
+    return res.status(201).json(nuevoVideojuego);
   } catch (error) {
 
     // Imprime por consola el error y lo envia al handler
@@ -81,7 +74,7 @@ const postVideojuego = async (req, res, next) => {
   }
 };
 
-// ----------------------------------------------------------------- PRIMERA REVISION
+// ----------------------------------------------------------------- ENTREGA PARCIAL 2
 
 // // Actualizar un videojuego (con validación de existencia)
 // exports.updateVideojuego = async (req, res) => {
