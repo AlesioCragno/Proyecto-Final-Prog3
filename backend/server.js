@@ -9,7 +9,9 @@ const routes = require("./routes");
 
 const { establecerCardinalidad } = require("./models/cardinalidadesModel");
 
-const { ejecutarSeederVideojuegos } = require("./seeders/seederVideojuego");
+const { ejecutarSeederUsuario } = require("./seeders/seederUser");
+const { ejecutarSeederVideojuego } = require("./seeders/seederVideojuego");
+const { ejecutarSeederColeccion } = require("./seeders/seederColeccion");
 
 class Server {
   constructor() {
@@ -70,7 +72,9 @@ class Server {
         console.log("✅ Database synchronized");
       }
 
-      await ejecutarSeederVideojuegos();
+      await ejecutarSeederUsuario();
+      await ejecutarSeederVideojuego();
+      await ejecutarSeederColeccion();
 
       this.app.listen(this.port, () => {
         console.log(`🚀 Server is running on port ${this.port}`);
