@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { middlewareVideojuegos } = require("../middleware/videojuegosValidator.middleware");
+const { validateInputVideojuegos } = require("../middleware/videojuegosValidator.middleware");
 const { getAllColecciones, getAllColeccionesUsuarios, getColeccionById, postColeccion, putColeccion } = require('../controllers/coleccionController');
 
 router.get('/', getAllColecciones);
