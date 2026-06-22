@@ -7,11 +7,16 @@ require("dotenv").config();
 const { sequelize } = require("./models/indexModel");
 const routes = require("./routes");
 
+const { establecerCardinalidad } = require("./models/cardinalidadesModel");
+
+const { ejecutarSeederUsuario } = require("./seeders/seederUser");
+const { ejecutarSeederVideojuego } = require("./seeders/seederVideojuego");
+const { ejecutarSeederColeccion } = require("./seeders/seederColeccion");
+
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || 3001;
-    this.databaseConfig();
     this.middleware();
     this.routes();
   }
@@ -38,18 +43,9 @@ class Server {
   routes() {
     this.app.use("/api", routes);
 
-    this.app.get("/health", (req, res) => {
-      res.status(200).json({
-        status: "OK",
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime(),
-      });
-    });
-
     this.app.use((err, req, res, next) => {
-      res.status(500).json({
-        error: err.message,
-      });
+      console.error("Error no controlado detectado:", err.stack);
+      res.status(err.status || 500).json({ error: err.message || "Internal Server Error"});
     });
 
     this.app.use("*", (req, res) => {
@@ -59,17 +55,13 @@ class Server {
     });
   }
 
-  async databaseConfig() {
-    try {
-      await sequelize.sync({ alter: false });
-    } catch (error) {
-      console.error("Error configuring database:", error);
-    }
-  }
-
   // Inicializar servidor
   async startServer() {
     try {
+      // Establecer cardinalidades
+      console.log("Configurando relaciones y cardinalidades.")
+      establecerCardinalidad();
+
       // Probar conexión a la base de datos
       await sequelize.authenticate();
       console.log("✅ Database connection established successfully.");
@@ -79,6 +71,10 @@ class Server {
         await sequelize.sync({ alter: false });
         console.log("✅ Database synchronized");
       }
+
+      await ejecutarSeederUsuario();
+      await ejecutarSeederVideojuego();
+      await ejecutarSeederColeccion();
 
       this.app.listen(this.port, () => {
         console.log(`🚀 Server is running on port ${this.port}`);

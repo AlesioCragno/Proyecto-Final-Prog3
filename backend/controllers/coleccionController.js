@@ -1,9 +1,8 @@
-const fs = require("fs")
 const { Coleccion } = require("../models/coleccionModel")
 
 const getAllColecciones = async (req, res, next) => {
     try {
-        const colecciones = Coleccion.findAll()
+        const colecciones = await Coleccion.findAll()
         return res.status(200).json(colecciones)
     } catch (error) {
         next(error)
@@ -12,15 +11,11 @@ const getAllColecciones = async (req, res, next) => {
 
 const getAllColeccionesUsuario = async (req, res, next) => {
     try {
-        const { userId } = req.params;
-
+        const userId = req.user.id;
         const coleccionesUsuario = await Coleccion.findAllByUsuario(userId);
 
-        if (!coleccionesUsuario) {
-            return res.status(404).json({
-                success: false,
-                error: "Colección no encontrada."
-            });
+        if (!coleccionesUsuario || coleccionesUsuario.length === 0) {
+            return res.status(404).json({ message: "Colección no encontrada." });
         }
         return res.status(200).json(coleccionesUsuario);
 
@@ -33,15 +28,12 @@ const getAllColeccionesUsuario = async (req, res, next) => {
 
 const getColeccionById = async (req, res) => {
     try {
-        const { userId } = req.params;
-        const {videojuegoId} = req.body; 
+        const userId = req.user.id;
+        const { videojuegoId } = req.params; 
 
-        const coleccionExiste =await Coleccion.findByUsuarioIdYJuegoId(userId,videojuegoId);
+        const coleccionExiste = await Coleccion.findByUsuarioIdYJuegoId(userId,videojuegoId);
         if (!coleccionExiste) {
-            return res.status(404).json({
-                success: false,
-                error: "Colección no encontrada."
-            });
+            return res.status(404).json({ message: "Colección no encontrada." });
         }
         return res.status(200).json(coleccionExiste);
 
@@ -57,11 +49,23 @@ const postColeccion = async (req, res, next) => {
   try {
     // Obtiene los atributos del body de la peticion
     console.log("Obteniendo los atributos del body de la peticion")
-    const { userId, videojuegoId, estado, calificacion, tiempoJuego } = req.body;
+    const userId = req.user.id;
+
+    console.log("Datos recibidos", req.body);
+
+    const { videojuegoId, estado, calificacion, tiempoJuego } = req.body;
 
     // Crea una nueva coleccion en base al modelo
     console.log("Creando un coleccion con los atributos obtenidos")
-    Coleccion.createColeccion(userId, videojuegoId, estado, calificacion, tiempoJuego);
+    const nuevaColeccion = await Coleccion.create({
+        userId,
+        videojuegoId,
+        estado,
+        calificacion,
+        tiempoJuego
+    });
+
+    return res.status(201).json(nuevaColeccion);
 
   } catch (error) {
     console.log(error)
@@ -71,15 +75,13 @@ const postColeccion = async (req, res, next) => {
 
 const putColeccion = async (req, res, next) => {
   try {
-        const { userId, videojuegoId } = req.params;
+        const userId = req.user.id;
+        const { videojuegoId } = req.params;
         const { estado, calificacion, tiempoJuego } = req.body;
 
         const coleccion = await Coleccion.findByUsuarioIdYJuegoId(userId,videojuegoId);
         if (!coleccion) {
-            return res.status(404).json({
-                success: false,
-                error: 'La colección no existe.'
-            });
+            return res.status(404).json({ message: 'La colección no existe.' });
         }
         await coleccion.update({
             estado,
@@ -87,11 +89,7 @@ const putColeccion = async (req, res, next) => {
             tiempoJuego
         });
 
-        return res.status(200).json({
-            success: true,
-            data: coleccion
-        });
-
+        return res.status(200).json(coleccion);
   } catch (error) {
     console.log(error)
     next(error)

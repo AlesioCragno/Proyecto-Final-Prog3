@@ -1,0 +1,17 @@
+[
+  { "userId": 1,"videojuegoId": 1, "estado": "jugando", "calificacion": 9, "tiempoJuego": 24 },
+  { "userId": 1, "videojuegoId": 2, "estado": "completado", "calificacion": 10, "tiempoJuego": 65 },
+  { "userId": 1, "videojuegoId": 3, "estado": "pendiente", "calificacion": 0, "tiempoJuego": 0 },
+  { "userId": 1, "videojuegoId": 4, "estado": "jugando", "calificacion": 7, "tiempoJuego": 8 },
+  { "userId": 1, "videojuegoId": 5, "estado": "completado", "calificacion": 8, "tiempoJuego": 42 },
+  { "userId": 1, "videojuegoId": 6, "estado": "pendiente", "calificacion": 0, "tiempoJuego": 0 },
+  { "userId": 1, "videojuegoId": 7, "estado": "jugando", "calificacion": 6, "tiempoJuego": 15 },
+  { "userId": 1, "videojuegoId": 8, "estado": "completado", "calificacion": 9, "tiempoJuego": 110 },
+  { "userId": 1, "videojuegoId": 9, "estado": "pendiente", "calificacion": 0, "tiempoJuego": 0 },
+  { "userId": 1, "videojuegoId": 10, "estado": "jugando", "calificacion": 8, "tiempoJuego": 4 },
+  { "userId": 1, "videojuegoId": 11, "estado": "completado", "calificacion": 7, "tiempoJuego": 30 },
+  { "userId": 1, "videojuegoId": 12, "estado": "pendiente", "calificacion": 0, "tiempoJuego": 0 },
+  { "userId": 1, "videojuegoId": 13, "estado": "jugando", "calificacion": 9, "tiempoJuego": 55 },
+  { "userId": 1, "videojuegoId": 14, "estado": "completado", "calificacion": 10, "tiempoJuego": 85 },
+  { "userId": 1, "videojuegoId": 15, "estado": "pendiente", "calificacion": 0, "tiempoJuego": 0 }
+]

@@ -12,7 +12,7 @@ Proyecto base para el trabajo final de Programacion 3. Es una aplicacion web com
 
 **Tu trabajo consiste en completar las partes marcadas con `// TODO` en el backend** (autenticacion JWT) y desarrollar las funcionalidades adicionales que se indiquen.
 
---------------------------------
+-----------------------------------------------
 
 ### Metodología de trabajo con Git y GitHub.
 
@@ -26,19 +26,50 @@ Flujo de trabajo:
 4. Revisión de código.
 5. Integración a la rama principal (main).
 
-## División de los archivos entre los integrantes.
+## División de las tareas entre los integrantes.
 
 > **Valentina Vitale y Alesio Cragno**:
 >
+> - Implementacion de TODO's en authController.js
 > - Implementacion de videojuegoController.js
 > - Implementacion de videojuegoRoutes.js
+> - Documentacion en el README.md
 
-> ****:
+> **Andrés Aguayo y Fabricio Maida**:
 >
+> - Implementación y diseño de todos los seeders
+> - Implementación y diseño de coleccionesValidator.middleware.js
+> - Implementación de los seeders en server.js
+> - Implementación de colecciones.json
+
+> **Ailén Villalba y Fabricio Maida**:
 >
+> - Implementación de los ToDo's del userModel.ts
 
+> **Fabricio Maida**:
+>
+> - Implementación y diseñado del Diagrama de Entidad/Relación (Diagrama ER Proyecto.png)
 
---------------------------------
+> **Andrés Aguayo**:
+>
+> - Implementación y diseño de las interfaces
+> - Implementación de los ToDo's del middleware/auth.js
+> - Implementación de videojuegosValidator.middleware.js
+> - Implementación y migración de modelos a typescript
+> - Configuraciones generales y arreglos varios
+
+> **Ailén Villalba**:
+>
+> - Implementación de coleccionController.js
+> - Implementación de coleccionRoutes.js
+
+-----------------------------------------------
+
+## Diagrama ER y Modelo Relacional del proyecto:
+
+[Diagrama ER y Modelo Relacional](Diagrama%20ER%20Proyecto.png)
+
+-----------------------------------------------
 
 ## Distribución de los archivos y carpetas.
 
@@ -62,6 +93,7 @@ Flujo de trabajo:
 ### data
 
 - `videojuegos.json`: Contiende un listado de todos los videojuegos.
+- `colecciones.json`: Contiene la coleccion de juegos de un usuario.
 
 ---
 
@@ -86,7 +118,7 @@ Flujo de trabajo:
 - `userModel.ts`: Define el modelo User, que representa a los usuarios de la aplicación y establece los datos que se almacenan en la base de datos. Además, incluye lógica para encriptar la contraseña antes de guardarla, validarla al iniciar sesión y evitar que se exponga cuando se devuelve la información del usuario.
 - `coleccionModel.ts`: Define el modelo colección de la base de datos, indicando que datos almacena cada registro y proporcionando métodos para buscar juegos dentro de la colección de un usuario.
 - `videojuegoModel.ts`: Define el modelo videojuego, especifica los datos que almacena cada videojuego en la base de datos y proporciona métodos para buscar, crear y obtener videojuegos.
-- `indexModel.ts`: Configura la conexión con la base de datos mediante Sequelize y verifica que la conexión se haya realizado correctamente al iniciarse.
+- `indexModel.ts`: Configura la conexión con la base de datos mediante Sequelize y verifica que la conexión se haya  realizado correctamente al iniciarse.
 
 ---
 
@@ -96,6 +128,10 @@ Flujo de trabajo:
 - `coleccionRoutes.js`: Define las rutas para gestionar la colección de videojuegos, permitiendo consultar, modificar y eliminar los juegos asociados a una colección.
 - `videojuegoRoutes.js`: Define las rutas para gestionar los videojuegos, permitiendo obtener las lista de juegos,  buscar uno por su ID y crear nuevos videojuegos.
 - `index.js`: Centraliza las rutas principales de la API utilizando `router.get()` para definir endpoints de prueba y verificación del servidor, `router.use()` para incorporar las rutas de autenticación y videojuegos, y `module.exports` para exportar el enrutador y utilizarlo en el resto de la aplicación.
+
+---
+
+
 
 ---
 
@@ -115,7 +151,7 @@ Flujo de trabajo:
 
 - Configuración del TypeScript.
 
---------------------------------
+-----------------------------------------------
 
 #### FUNCIONES:
 
@@ -139,7 +175,7 @@ Flujo de trabajo:
 - `putColeccion`: Modifica los detalles de un juego que el usuario ya tenía en su colección (por ejemplo, si le quiere cambiar la calificación o sumarle horas de juego). Identifica la colección mediante el `userId` y `videojuegoId`, verifica que exista y luego actualiza los campos permitidos (estado, calificacion, tiempoJuego) usando `.update().`
 
 ---
-
+ 
 ### middleware
 
 > auth.js:
@@ -149,6 +185,9 @@ Flujo de trabajo:
 > videojuegosValidator.middleware.js:
 - `validateInputVideojuegos(req, res, next)`: encargado de inspeccionar las peticiones entrantes validando que los campos opcionales del cuerpo (nombre, descripcion, genero y plataforma) correspondan estrictamente al tipo de dato string. Si se detecta alguna diferencia de tipo, interrumpe el flujo acumulando los fallos y respondiendo con un estado 400, en caso contrario, next() transfiere el control al controlador de la ruta.
 
+> coleccionesValidator.middleware.js:
+- valida los datos recibidos antes de agregar o modificar una colección de videojuegos. Revisa que `videojuegoId` sea un número válido al crear una nueva colección, que estado tenga uno de los valores permitidos (pendiente, jugando o completado), que calificacion esté entre 0 y 10 y que `tiempoJuego` sea un número positivo. Si encuentra errores, los devuelve con una respuesta `400`; si todo es correcto, ejecuta `next()` para que la solicitud continúe al siguiente paso.
+
 ---
 
 ### models
@@ -157,10 +196,10 @@ Flujo de trabajo:
 - La función `establecerCardinalidad()` conecta las tablas de la base de datos configurando una relación de muchos a muchos entre `Usuarios` y `Videojuegos` a través del método `belongsToMany`. Establece que un usuario puede tener múltiples videojuegos y un videojuego pertenecer a múltiples usuarios, utilizando el modelo intermedio `Coleccion` (con sus llaves userId y videojuegoId) como el puente organizado para vincular ambas tablas. 
 
 > userModel.ts:
-- Este archivo utiliza `User.init()` para definir la estructura del modelo User en la base de datos, implementa el método `validarContrasenia()` para comprobar si una contraseña coincide con la almacenada mediante `bcrypt.compare()`, redefine `toJSON()` para ocultar la contraseña al devolver los  datos del usuario y emplea el hook `beforeCreate` junto con `bcrypt.hash()` para encriptar la contraseña antes de guardarla en la base de datos.
+- Este archivo utiliza `User.init()` para definir la estructura del modelo User en la base de datos, implementa el método `validarContrasenia()` para comprobar si una contraseña coincide con la almacenada mediante `bcrypt.compare()`, redefine `toJSON()` para ocultar la contraseña al devolver los datos del usuario y emplea el hook `beforeCreate` junto con `bcrypt.hash()` para encriptar la contraseña antes de guardarla en la base de datos.
 
 > coleccionModel.ts: 
-- Define la tabla colecciones en la base de datos, la cual sirve para unir a los usuarios con sus videojuegos. Utiliza los identificadores userId y videojuegoId como una llave doble para saber a quién le pertenece cada juego, y guarda detalles de la partida como el estado (pendiente, jugando o completado), la nota y el tiempo jugado. Además, incluye funciones rápidas para buscar directamente las colecciones completas de un usuario o un  juego específico en su biblioteca.
+- Define la tabla colecciones en la base de datos, la cual sirve para unir a los usuarios con sus videojuegos. Utiliza los identificadores userId y videojuegoId como una llave doble para saber a quién le pertenece cada juego, y guarda detalles de la partida como el estado (pendiente, jugando o completado), la nota y el tiempo jugado. Además, incluye funciones rápidas para buscar directamente las colecciones completas de un usuario o un juego específico en su biblioteca.
 
 > videojuegoModel.ts:
 - Este archivo utiliza `Videojuego.init()` para definir la estructura del modelo Videojuego en la base de datos y crea métodos como `findAllVideogames()`, `findById()`, `createVideojuego()` y `findLastOne()` para obtener, buscar, crear y consultar videojuegos mediante Sequelize.
@@ -179,7 +218,7 @@ Flujo de trabajo:
 - Este archivo utiliza `router.get()`, `router.post()` y `outer.put()` para definir las rutas relacionadas con la colección de videojuegos, permitiendo obtener las colecciones, consultar una colección específica, agregar videojuegos y actualizar la información de una colección, enlazando cada ruta con su función correspondiente del controlador.
 
 > index.js:
-- Este archivo utiliza `new Sequelize()` para crear la conexión con la base de datos a partir de la configuración del entorno, inicializa el modelo `User` mediante `UserModel(sequelize)` y exporta la conexión y los modelos con `module exports` para que puedan ser utilizados en el resto de la aplicación.
+- Este archivo utiliza `new Sequelize()` para crear la conexión con la base de datos a partir de la configuración del entorno, inicializa el modelo `User` mediante `UserModel(sequelize)` y exporta la conexión y los modelos con `module.exports` para que puedan ser utilizados en el resto de la aplicación.
 
 > videojuegoRoutes.js:
 - Este archivo utiliza `router.get()` para definir las rutas que permiten obtener todos los videojuegos o buscar uno por su ID, `router.post()` para crear un nuevo videojuego y `module.exports` para exportar el conjunto de rutas y que puedan ser utilizadas por la aplicación.
@@ -190,7 +229,11 @@ Flujo de trabajo:
 
 - Este archivo utiliza la clase `Server` para configurar e iniciar el servidor `Express`. EN ella emplea `middleware()` para registrar los middlewares de seguridad y procesamiento de solicitudes, `routes()` para definir las rutas de la API y el manejo de errores, `databaseConfig()` para sincronizar los modelos con la base de datos y `startServer()` para verificar la conexión e iniciar el servidor. Además, utiliza `process.on()` para cerrar correctamente la conexión con la base de datos cuando la aplicación finaliza.
 
---------------------------------
+---
+
+### DOCUMENTACIÓN DE POSTMAN:
+https://documenter.getpostman.com/view/55388250/2sBXwvL9Vv
+
 
 ## Arquitectura General
 

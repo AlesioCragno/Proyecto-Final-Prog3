@@ -1,13 +1,15 @@
 const { Router } = require('express');
 const router = Router();
-const { validateInputVideojuegos } = require("../middleware/videojuegosValidator.middleware");
-const { getAllColecciones, getAllColeccionesUsuarios, getColeccionById, postColeccion, putColeccion } = require('../controllers/coleccionController');
+const { verificarToken } = require("../middleware/auth");
+const { getAllColecciones, getAllColeccionesUsuario, getColeccionById, postColeccion, putColeccion } = require('../controllers/coleccionController');
+
+router.use(verificarToken);
 
 router.get('/', getAllColecciones);
-router.get('/:id', getAllColeccionesUsuario)
-router.get('/:id', getColeccionById);
+router.get('/mi-lista', getAllColeccionesUsuario)
+router.get('/detalle/:videojuegoId', getColeccionById);
 router.post('/', postColeccion);
-router.put('/', putColeccion);
+router.put('/:videojuegoId', putColeccion);
 /*
 router.put('/', putEstado);
 router.put('/', putCalifacion);

@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-const { middlewareVideojuegos } = require("../middleware/videojuegosValidator.middleware");
+const { validateInputVideojuegos } = require("../middleware/videojuegosValidator.middleware");
 const { getAllVideojuegos, getVideojuegoById, postVideojuego } = require('../controllers/videojuegoController');
+const { verificarToken } = require("../middleware/auth");
 
 // GET Obtener todos los videojuegos
 router.get('/', getAllVideojuegos);
@@ -10,7 +11,9 @@ router.get('/', getAllVideojuegos);
 router.get('/:id', getVideojuegoById);
 
 // POST Crear un nuevo videojuego
-router.post('/', postVideojuego);
+router.post('/', verificarToken, validateInputVideojuegos, postVideojuego);
+
+//-------------------------------------------- ENTREGA PARCIAL 2
 
 // PUT Actualizar un videojuego
 //router.put('/:id', videojuegoController.updateVideojuego);      // <--- VER SI LA DEJAMOS O NO
