@@ -1,0 +1,36 @@
+{
+  "name": "proyecto-final-prog-iii",
+  "version": "1.0.0",
+  "description": "Proyecto base para el trabajo final de Programacion 3. Es una aplicacion web completa con frontend, backend, base de datos y servicios auxiliares, todo orquestado con Docker Compose.",
+  "homepage": "https://github.com/AlesioCragno/Proyecto-Final-Prog3#readme",
+  "bugs": {
+    "url": "https://github.com/AlesioCragno/Proyecto-Final-Prog3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlesioCragno/Proyecto-Final-Prog3.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Tests OK\"",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.21.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "nodemon": "^3.1.14",
+    "standard": "^17.1.2"
+  }
+}
