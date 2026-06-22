@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 const { User } = require('../models/userModel');
 
 const ejecutarSeederUsuario = async () => {
@@ -15,13 +15,13 @@ const ejecutarSeederUsuario = async () => {
 
         console.log('Comenzando la carga del usuario.');
 
-        const salt = await bcrypt.genSalt(10);
-        const passwordHasheada = await bcrypt.hash(passwordPlana, salt);
+        //const salt = await bcrypt.genSalt(10);
+        //const passwordHasheada = await bcrypt.hash(passwordPlana, salt);
 
         await User.create({
             nombre: "Admin",
-            email:emailTest,
-            password: passwordHasheada
+            email: emailTest,
+            password: passwordPlana
         });
 
         console.log('Se cargó al usuario exitosamente.');
