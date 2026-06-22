@@ -234,6 +234,13 @@ Flujo de trabajo:
 ### DOCUMENTACIÓN DE POSTMAN:
 https://documenter.getpostman.com/view/55388250/2sBXwvL9Vv
 
+---
+
+### DOCUMENTACIÓN DE POSTMAN:
+https://documenter.getpostman.com/view/55388250/2sBXwvL9Vv
+
+-----------------------------------------------
+
 
 ## Arquitectura General
 
