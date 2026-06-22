@@ -13,6 +13,7 @@ export const sequelize = new Sequelize (
         port: dbConfig.port,
         dialect: dbConfig.dialect,
         logging: dbConfig.logging,
+        pool: dbConfig.pool,
         dialectOptions: dbConfig.dialectOptions
     }
 )
@@ -28,4 +29,7 @@ const verificarConexion = async (): Promise<void> => {
 
 verificarConexion()
 
-module.exports = {sequelize, Sequelize }
+module.exports = {
+    sequelize,
+    Sequelize
+}
