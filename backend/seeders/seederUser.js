@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { Usuario } = require('../models/usuarioModel');
+const { Usuario } = require('../models/userModel');
 
 const ejecutarSeederUsuario = async () => {
     try {
