@@ -1,12 +1,12 @@
 const bcrypt = require('bcryptjs');
-const { Usuario } = require('../models/userModel');
+const { User } = require('../models/userModel');
 
 const ejecutarSeederUsuario = async () => {
     try {
         const emailTest = "admin@correo.com";
         const passwordPlana = "Admin1234";
 
-        const usuarioExistente = await Usuario.findOne ({ where: { email: emailTest}});
+        const usuarioExistente = await User.findOne ({ where: { email: emailTest}});
 
         if (usuarioExistente) {
             console.log('El usuario ya existe. Seeder salteado.');
@@ -18,7 +18,7 @@ const ejecutarSeederUsuario = async () => {
         const salt = await bcrypt.genSalt(10);
         const passwordHasheada = await bcrypt.hash(passwordPlana, salt);
 
-        await Usuario.create({
+        await User.create({
             nombre: "Admin",
             email:emailTest,
             password: passwordHasheada
