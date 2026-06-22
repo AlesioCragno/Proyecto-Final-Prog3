@@ -1,35 +1,33 @@
 const fs = require("fs")
-const { ColeccionModel } = require("../models/coleccionModel")
+const { Coleccion } = require("../models/coleccionModel")
 
 const getAllColecciones = async (req, res, next) => {
     try {
-        const colecciones = ColeccionModel.findAll()
+        const colecciones = Coleccion.findAll()
         return res.status(200).json(colecciones)
     } catch (error) {
         next(error)
     }
 }
 
-const getAllColeccionesUsuario = async (req, res) => {
+const getAllColeccionesUsuario = async (req, res, next) => {
     try {
         const { userId } = req.params;
 
-        const coleccionesUsuario =await Coleccion.findByUsuarioIdYJuegoId(userId);
+        const coleccionesUsuario = await Coleccion.findAllByUsuario(userId);
+
         if (!coleccionesUsuario) {
             return res.status(404).json({
                 success: false,
                 error: "Colección no encontrada."
             });
         }
-        return res.status(200).json({
-            success: true,
-            data: coleccionesUsuario
-        });
+        return res.status(200).json(coleccionesUsuario);
 
     } catch (error){
-    // Imprime por consola el error y lo envia al handler
-    console.log(error)
-    next(error)
+        // Imprime por consola el error y lo envia al handler
+        console.log(error)
+        next(error)
     }
 };
 
@@ -45,15 +43,12 @@ const getColeccionById = async (req, res) => {
                 error: "Colección no encontrada."
             });
         }
-        return res.status(200).json({
-            success: true,
-            data: coleccionExiste
-        });
+        return res.status(200).json(coleccionExiste);
 
     } catch (error){
-    // Imprime por consola el error y lo envia al handler
-    console.log(error)
-    next(error)
+        // Imprime por consola el error y lo envia al handler
+        console.log(error)
+        next(error)
     }
 };
 
