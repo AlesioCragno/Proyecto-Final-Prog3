@@ -28,6 +28,20 @@ export class Coleccion extends Model<InterfaceColeccion, ColeccionCreationAtribu
             where: { userId }
         })
     }
+
+    // Crear Coleccion (POST)
+    static async createColeccion(userId: number, videojuegoId: number): Promise<Coleccion> {
+        return await Coleccion.create({ userId, videojuegoId })
+    }
+
+    // Actualizar juego (PUT)
+    static async updateColeccion(userId: number, videojuegoId: number, datosAEditar: {
+        estado?: "completado" | "jugando" | "pendiente", calificacion?: number | null, tiempoJuego?: number
+    }): Promise<[number]> {
+        return await Coleccion.update(datosAEditar, {
+            where: { userId, videojuegoId }
+        })
+    }
 }
 
 Coleccion.init(
