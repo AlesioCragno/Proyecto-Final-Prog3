@@ -50,6 +50,9 @@ const postColeccion = async (req, res, next) => {
     // Obtiene los atributos del body de la peticion
     console.log("Obteniendo los atributos del body de la peticion")
     const userId = req.user.id;
+
+    console.log("Datos recibidos", req.body);
+
     const { videojuegoId, estado, calificacion, tiempoJuego } = req.body;
 
     // Crea una nueva coleccion en base al modelo
