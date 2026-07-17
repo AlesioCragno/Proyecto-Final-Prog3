@@ -1,18 +1,27 @@
-const API_URL = 'https://proyecto-final-prog3.onrender.com/api';
+// en local usa la API en localhost, en producción usa la URL de Render.
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  (window.location.hostname === "localhost"
+    ? "http://localhost:3001/api/auth"
+    : "https://proyecto-final-prog3.onrender.com/api/auth");
 
 export const authService = {
   // POST /api/register: registra un nuevo usuario (Pública)
   register: async (nombre, email, password) => {
     const respuesta = await fetch(`${API_URL}/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, email, password }),
     });
 
     const datos = await respuesta.json();
 
     if (!respuesta.ok) {
-      throw new Error(datos.error || 'Error al registrar el usuario');
+      throw new Error(datos.error || "Error al registrar el usuario");
+    }
+
+    if (datos.token) {
+      localStorage.setItem("token", datos.token);
     }
 
     return datos; // Devuelve { message, user, token }
@@ -21,15 +30,19 @@ export const authService = {
   // POST /api/login: Inicio de sesión (Pública)
   login: async (email, password) => {
     const respuesta = await fetch(`${API_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
 
     const datos = await respuesta.json();
 
     if (!respuesta.ok) {
-      throw new Error(datos.error || 'Error al iniciar sesión');
+      throw new Error(datos.error || "Error al iniciar sesión");
+    }
+
+    if (datos.token) {
+      localStorage.setItem("token", datos.token);
     }
 
     return datos; // Devuelve { message, user, token }
@@ -37,16 +50,16 @@ export const authService = {
 
   // GET /api/perfil: Obtener perfil del usuario logueado (Protegida)
   getPerfil: async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     if (!token) {
-      throw new Error('No estás autorizado. Por favor, iniciá sesión.');
+      throw new Error("No estás autorizado. Por favor, iniciá sesión.");
     }
 
     const respuesta = await fetch(`${API_URL}/perfil`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`, // Inyectamos el Bearer Token para el middleware
       },
     });
@@ -54,7 +67,7 @@ export const authService = {
     const datos = await respuesta.json();
 
     if (!respuesta.ok) {
-      throw new Error(datos.error || 'Error al obtener el perfil');
+      throw new Error(datos.error || "Error al obtener el perfil");
     }
 
     return datos; // Devuelve { user }
@@ -63,14 +76,14 @@ export const authService = {
   // GET /api/users: Obtener todos los usuarios del sistema (Pública/General)
   getAllUsers: async () => {
     const respuesta = await fetch(`${API_URL}/users`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     });
 
     const datos = await respuesta.json();
 
     if (!respuesta.ok) {
-      throw new Error(datos.error || 'Error al obtener la lista de usuarios');
+      throw new Error(datos.error || "Error al obtener la lista de usuarios");
     }
 
     return datos; // Devuelve el array de usuarios [user1, user2, ...]
