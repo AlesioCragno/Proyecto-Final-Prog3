@@ -4,6 +4,7 @@ import { coleccionService } from "../services/coleccionService";
 export const GestionColecciones = () => {
     const [misJuegos, setMisJuegos] = useState([]);
     const [error, setError] = useState("");
+
     const [form, setForm] = useState({
         videojuegoId: "",
         estado: "pendiente",
@@ -67,14 +68,17 @@ export const GestionColecciones = () => {
             {/* FORMULARIO DE EDICIÓN DE PROGRESO */}
             {isEditing && (
                 <form onSubmit={handleSubmit}>
-                    <h3>Actualizar Progreso del Juego</h3>
+                    <h3>
+                        Actualizar Progreso de: {" "}
+                        {misJuegos.find(j => j.videojuegoId === form.videojuegoId)?.Videojuego?.nombre || "Cargando..."}
+                    </h3>
 
                     <div>
                         <label>Estado: </label>
                         <select name="estado" value={form.estado} onChange={handleChange}>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="Jugando">Jugando</option>
-                        <option value="Completado">Completado</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="jugando">Jugando</option>
+                            <option value="completado">Completado</option>
                         </select>
                     </div>
 
@@ -120,7 +124,7 @@ export const GestionColecciones = () => {
             <table border="1" style={{ width: '100%', textAlign: 'left', marginTop: '20px' }}>
                 <thead>
                 <tr>
-                    <th>ID del Videojuego</th>
+                    <th>Videojuego</th>
                     <th>Estado</th>
                     <th>Horas Jugadas</th>
                     <th>Calificacion</th>
@@ -130,21 +134,21 @@ export const GestionColecciones = () => {
                 <tbody>
                 {misJuegos.length === 0 ? (
                     <tr>
-                    <td colSpan="5">
-                        No agregaste ningún juego a tu lista todavía.
-                    </td>
+                        <td colSpan="5">
+                            No agregaste ningún juego a tu lista todavía.
+                        </td>
                     </tr>
                 ) : (
                     misJuegos.map((item) => (
-                    <tr key={item.videojuegoId}>
-                        <td>{item.Videojuego ? item.Videojuego.nombre : `Juego ID: ${item.videojuegoId}`}</td>
-                        <td>{item.estado}</td>
-                        <td>{item.tiempoJuego} hs</td>
-                        <td>{item.calificacion > 0 ? `${item.calificacion}/10` : 'Sin calificar'}</td>
-                        <td>
-                        <button onClick={() => handleEditClick(item)}>Editar Progreso</button>
-                        </td>
-                    </tr>
+                        <tr key={item.videojuegoId}>
+                            <td>{item.Videojuego ? item.Videojuego.nombre : `Juego ID: ${item.videojuegoId}`}</td>
+                            <td>{item.estado}</td>
+                            <td>{item.tiempoJuego} hs</td>
+                            <td>{item.calificacion > 0 ? `${item.calificacion}/10` : 'Sin calificar'}</td>
+                            <td>
+                            <button onClick={() => handleEditClick(item)}>Editar Progreso</button>
+                            </td>
+                        </tr>
                     ))
                 )}
                 </tbody>
