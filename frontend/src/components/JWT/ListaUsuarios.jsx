@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { authService } from "../../services/authService";
-import "../../styles/components/listaUsuarios.css";
+// import "../../styles/components/listaUsuarios.css";
 
 export const ListaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);

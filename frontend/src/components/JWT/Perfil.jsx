@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { authService } from "../../services/authService";
-import "../../styles/components/perfil.css";
+// import "../../styles/components/perfil.css";
 
 export const Perfil = () => {
   const [usuario, setUsuario] = useState(null);

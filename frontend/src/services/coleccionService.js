@@ -22,6 +22,11 @@ export const coleccionService = {
             method: "GET",
             headers: getAuthHeaders(),
         });
+
+        if (response.status === 404) {
+            return [];
+        }
+
         if (!response.ok) throw new Error("Error al obtener tu lista de videojuegos");
         return await response.json();
     },

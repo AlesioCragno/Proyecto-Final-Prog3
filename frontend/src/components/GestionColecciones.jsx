@@ -16,6 +16,7 @@ export const GestionColecciones = () => {
     // Obtener los juegos del usuario 
     const cargarMiLista = async () => {
         try {
+            setError("");
             const datos = await coleccionService.getMiLista();
             setMisJuegos(datos);
         } catch (err) {
