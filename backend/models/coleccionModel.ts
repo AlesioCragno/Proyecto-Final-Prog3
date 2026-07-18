@@ -2,6 +2,7 @@ import { sequelize } from "./indexModel";
 import { DataTypes, Model, Optional } from "sequelize";
 
 import { InterfaceColeccion } from "../interfaces/coleccionInterface"
+import { Videojuego } from "./videojuegoModel";
 
 interface ColeccionCreationAtributes extends Optional<InterfaceColeccion, "estado" | "calificacion" | "tiempoJuego"> {}
 
@@ -25,7 +26,11 @@ export class Coleccion extends Model<InterfaceColeccion, ColeccionCreationAtribu
     // Buscar todos los juegos que tiene un usuario
     static async findAllByUsuario(userId: number): Promise<Coleccion[]> {
         return await Coleccion.findAll({
-            where: { userId }
+            where: { userId },
+            include: [{
+                model: Videojuego,
+                attributes: ["nombre", "genero", "plataforma"]
+            }]
         })
     }
 
