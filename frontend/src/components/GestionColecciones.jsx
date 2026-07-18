@@ -5,10 +5,10 @@ export const GestionColecciones = () => {
     const [misJuegos, setMisJuegos] = useState([]);
     const [error, setError] = useState("");
     const [form, setForm] = useState({
-        id: "",
-        estado: "Pendiente",
-        tiempoJugado: 0,
-        nota: 0,
+        videojuegoId: "",
+        estado: "pendiente",
+        tiempoJuego: 0,
+        calificacion: 0,
     });
     const [isEditing, setIsEditing] = useState(false);
 
@@ -34,13 +34,13 @@ export const GestionColecciones = () => {
         e.preventDefault();
         try {
             if (isEditing) {
-                await coleccionService.update(form.id, {
+                await coleccionService.update(form.videojuegoId, {
                     estado: form.estado,
-                    tiempoJugado: Number(form.tiempoJugado),
-                    nota: Number(form.nota),
+                    tiempoJuego: Number(form.tiempoJuego),
+                    calificacion: Number(form.calificacion),
                 });
 
-                setForm({ id: "", estado: "Pendiente", tiempoJugado: 0, nota: 0 });
+                setForm({ id: "", estado: "pendiente", tiempoJuego: 0, calificacion: 0 });
                 setIsEditing(false)
                 cargarMiLista();
             }
@@ -51,10 +51,10 @@ export const GestionColecciones = () => {
 
     const handleEditClick = (juego) => {
         setForm({
-            id: juego.id,
-            estado: juego.estado || "Pendiente",
-            tiempoJugado: juego.tiempoJugado || 0,
-            nota: juego.nota || 0,
+            videojuegoId: juego.videojuegoId,
+            estado: juego.estado || "pendiente",
+            tiempoJuego: juego.tiempoJuego || 0,
+            calificacion: juego.calificacion || 0,
         });
         setIsEditing(true);
     };
@@ -72,7 +72,7 @@ export const GestionColecciones = () => {
                     <div>
                         <label>Estado: </label>
                         <select name="estado" value={form.estado} onChange={handleChange}>
-                        <option value="Pendiente">Pendiente</option>
+                        <option value="pendiente">Pendiente</option>
                         <option value="Jugando">Jugando</option>
                         <option value="Completado">Completado</option>
                         </select>
@@ -82,8 +82,8 @@ export const GestionColecciones = () => {
                         <label>Tiempo Jugado (Horas): </label>
                         <input
                         type="number"
-                        name="tiempoJugado"
-                        value={form.tiempoJugado}
+                        name="tiempoJuego"
+                        value={form.tiempoJuego}
                         onChange={handleChange}
                         min="0"
                         required
@@ -91,11 +91,11 @@ export const GestionColecciones = () => {
                     </div>
 
                     <div>
-                        <label>Nota / Calificación (0-10): </label>
+                        <label>Calificación (0-10): </label>
                         <input
                         type="number"
-                        name="nota"
-                        value={form.nota}
+                        name="calificacion"
+                        value={form.calificacion}
                         onChange={handleChange}
                         min="0"
                         max="10"
@@ -108,7 +108,7 @@ export const GestionColecciones = () => {
                         type="button"
                         onClick={() => {
                         setIsEditing(false);
-                        setForm({ id: '', estado: 'Pendiente', tiempoJugado: 0, nota: 0 });
+                        setForm({ videojuegoId: '', estado: 'pendiente', tiempoJuego: 0, calificacion: 0 });
                         }}
                     >Cancelar</button>
                 </form>
@@ -120,10 +120,10 @@ export const GestionColecciones = () => {
             <table border="1" style={{ width: '100%', textAlign: 'left', marginTop: '20px' }}>
                 <thead>
                 <tr>
-                    <th>Videojuego (Título)</th>
+                    <th>ID del Videojuego</th>
                     <th>Estado</th>
                     <th>Horas Jugadas</th>
-                    <th>Nota</th>
+                    <th>Calificacion</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -136,11 +136,11 @@ export const GestionColecciones = () => {
                     </tr>
                 ) : (
                     misJuegos.map((item) => (
-                    <tr key={item.id}>
-                        <td>{item.Videojuego ? item.Videojuego.titulo : `Juego ID: ${item.videojuegoId}`}</td>
+                    <tr key={item.videojuegoId}>
+                        <td>{item.Videojuego ? item.Videojuego.nombre : `Juego ID: ${item.videojuegoId}`}</td>
                         <td>{item.estado}</td>
-                        <td>{item.tiempoJugado} hs</td>
-                        <td>{item.nota > 0 ? `${item.nota}/10` : 'Sin calificar'}</td>
+                        <td>{item.tiempoJuego} hs</td>
+                        <td>{item.calificacion > 0 ? `${item.calificacion}/10` : 'Sin calificar'}</td>
                         <td>
                         <button onClick={() => handleEditClick(item)}>Editar Progreso</button>
                         </td>
