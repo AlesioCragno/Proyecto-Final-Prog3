@@ -1,0 +1,181 @@
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+
+    width:100%;
+
+    background:#111827;
+
+    border-bottom:1px solid #263246;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 6%;
+
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+.navbar-logo h2{
+
+    color:white;
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.navbar-logo h2:hover{
+
+    color:#7c3aed;
+
+}
+
+/* ===========================
+   LINKS
+=========================== */
+
+.navbar-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+
+    list-style:none;
+
+}
+
+.navbar-links li{
+
+    position:relative;
+
+}
+
+.navbar-links a{
+
+    color:#cbd5e1;
+
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+.navbar-links a:hover{
+
+    color:white;
+
+}
+
+/* Línea violeta al pasar el mouse */
+
+.navbar-links li::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    background:#7c3aed;
+
+    transition:.3s;
+
+}
+
+.navbar-links li:hover::after{
+
+    width:100%;
+
+}
+
+/* ===========================
+   LOGIN
+=========================== */
+
+.navbar-auth{
+
+    display:flex;
+    align-items:center;
+
+}
+
+.btn-login,
+.btn-logout{
+
+    background:#7c3aed;
+
+    color:white;
+
+    padding:11px 22px;
+
+    border-radius:12px;
+
+    border:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-login:hover,
+.btn-logout:hover{
+
+    background:#9255ff;
+
+    transform:translateY(-2px);
+
+    box-shadow:0px 8px 18px rgba(124,58,237,.35);
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        padding:20px;
+
+    }
+
+    .navbar-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:20px;
+
+    }
+
+}
