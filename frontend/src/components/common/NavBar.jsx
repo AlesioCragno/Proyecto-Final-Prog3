@@ -1,49 +1,86 @@
-import React, { useState } from 'react';
-import '../../styles/components/navbar.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import "../../styles/components/navbar.css";
 
 export const Navbar = () => {
-  // Simulamos un estado para saber si el usuario está logueado o no
-  const [Logged, setIsLogged] = useState(false);
+
+  const [logged, setLogged] = useState(false);
 
   const handleAuthClick = () => {
-    setIsLogged(!Logged);
+    setLogged(!logged);
   };
 
   return (
+
     <nav className="navbar">
+
       <div className="navbar-logo">
-        <a href="/">
-          <h2>
-            Coleccion de videojuegos
-          </h2>
-        </a>
+
+        <Link to="/">
+          <h2>🎮 Colección de Videojuegos</h2>
+        </Link>
+
       </div>
 
       <ul className="navbar-links">
+
         <li>
-          <a href="/usuario">Inicio - Perfil</a>
+          <Link to="/perfil">
+            Perfil
+          </Link>
         </li>
+
         <li>
-          <a href="/videojuegos">Videojuegos</a>
+          <Link to="/videojuegos">
+            Videojuegos
+          </Link>
         </li>
+
         <li>
-          <a href="/colecciones">Colecciones</a>
+          <Link to="/colecciones">
+            Colecciones
+          </Link>
         </li>
+
+        <li>
+          <Link to="/usuarios">
+            Usuarios
+          </Link>
+        </li>
+
       </ul>
 
       <div className="navbar-auth">
-        {Logged ? (
-          <button className="btn-logout" onClick={handleAuthClick}>
+
+        {logged ? (
+
+          <button
+            className="btn-logout"
+            onClick={handleAuthClick}
+          >
             Log out
           </button>
+
         ) : (
-          <a href="/login">
-            <button className="btn-login" onClick={handleAuthClick}>
+
+          <Link to="/login">
+
+            <button
+              className="btn-login"
+              onClick={handleAuthClick}
+            >
               Log in
             </button>
-          </a>
+
+          </Link>
+
         )}
+
       </div>
+
     </nav>
+
   );
+
 };

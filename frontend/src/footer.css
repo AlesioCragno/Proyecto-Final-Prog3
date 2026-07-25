@@ -1,0 +1,107 @@
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer{
+
+    margin-top:50px;
+
+    background:#111827;
+
+    border-top:1px solid #263246;
+
+    padding:25px 6%;
+
+}
+
+.footer-contenido{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.footer-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.footer-info h3{
+
+    color:white;
+
+    font-size:1.1rem;
+
+    font-weight:600;
+
+}
+
+.footer-info p{
+
+    color:#94A3B8;
+
+    font-size:.95rem;
+
+}
+
+.footer-copy{
+
+    text-align:right;
+
+}
+
+.footer-copy p{
+
+    color:#94A3B8;
+
+    font-size:.9rem;
+
+    line-height:1.6;
+
+}
+
+.footer-copy span{
+
+    color:#7C3AED;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .footer-contenido{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .footer-copy{
+
+        text-align:center;
+
+    }
+
+}
