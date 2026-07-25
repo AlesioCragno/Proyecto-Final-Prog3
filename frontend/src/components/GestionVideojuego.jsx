@@ -42,15 +42,33 @@ export const GestionVideojuegos = () => {
         </thead>
         <tbody>
           {/* Recorremos el array con el estado de los videojuegos .map */}
-          {videojuegos.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.nombre}</td>
-              <td>{item.descripcion}</td>
-              <td>{item.genero}</td>
-              <td>{item.plataforma}</td>
-            </tr>
-          ))}
+          <div className='grid-videojuegos'>
+            {videojuegos.map((item) => (
+              <div
+                className="card-videojuego"
+                key={item.id}
+              >
+
+                <h3>{item.nombre}</h3>
+
+                <p>{item.descripcion}</p>
+
+                <div className="badges">
+
+                  <span className="badge genero">{item.genero}</span>
+                  <span className="badge plataforma">{item.plataforma}</span>
+
+                </div>
+
+                <div className="footer-card">
+                  <span>ID #{item.id}</span>
+                  <button>Ver más</button>
+                </div>
+
+              </div>
+            ))}
+            
+          </div>
         </tbody>
       </table>
     </div>
