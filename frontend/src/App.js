@@ -18,15 +18,32 @@ import { Perfil } from "./components/JWT/Perfil";
 import { ListaUsuarios } from "./components/JWT/ListaUsuarios";
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        {/*<Navbar/>*/}
 
-        <main style={{ padding: "20px"}}>
-          <h1>Panel de Control - Coleccion de Videojuegos</h1>
+  return (
+
+    <Router>
+
+      <div className="App">
+
+        <Navbar />
+
+        <main className="main-content">
+
+          <div className="page-header">
+
+            <h1 className="page-title">
+              🎮 Panel de Control
+            </h1>
+
+            <p className="page-subtitle">
+              Administrá tu colección de videojuegos,
+              seguí tu progreso y organizá todos tus juegos.
+            </p>
+
+          </div>
 
           <Routes>
+            
             {/* Rutas del catalogo y colecciones */}
             {/*<Route path="/" element={<GestionVideojuegos/>}/>*/}
             {/*<Route path="/videojuegos" element={<GestionVideojuegos/>}/>*/}
@@ -40,12 +57,18 @@ function App() {
             <Route path="/lista-usuarios" element={<ListaUsuarios/>}/>
 
           </Routes>
+
         </main>
 
-        {/*<Footer/>*/}
+        <Footer/>
+
       </div>
-    </Router> 
+
+    </Router>
+
   );
+
 }
+
 
 export default App;
