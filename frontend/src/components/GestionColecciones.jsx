@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { coleccionService } from "../services/coleccionService";
+import "../styles/components/gestionColecciones.css";
 
 export const GestionColecciones = () => {
+
     const [misJuegos, setMisJuegos] = useState([]);
     const [error, setError] = useState("");
 
@@ -11,148 +13,215 @@ export const GestionColecciones = () => {
         tiempoJuego: 0,
         calificacion: 0,
     });
+
     const [isEditing, setIsEditing] = useState(false);
 
-    // Obtener los juegos del usuario 
     const cargarMiLista = async () => {
+
         try {
+
             const datos = await coleccionService.getMiLista();
+
             setMisJuegos(datos);
+
         } catch (err) {
-            setError(err.message || "Error al cargar tu lista personal.");
+
+            setError(err.message);
+
         }
+
     };
 
     useEffect(() => {
+
         cargarMiLista();
+
     }, []);
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value});
+
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
+
         try {
-            if (isEditing) {
-                await coleccionService.update(form.videojuegoId, {
-                    estado: form.estado,
-                    tiempoJuego: Number(form.tiempoJuego),
-                    calificacion: Number(form.calificacion),
-                });
 
-                setForm({ id: "", estado: "pendiente", tiempoJuego: 0, calificacion: 0 });
-                setIsEditing(false)
-                cargarMiLista();
-            }
+            await coleccionService.update(form.videojuegoId, {
+                estado: form.estado,
+                tiempoJuego: Number(form.tiempoJuego),
+                calificacion: Number(form.calificacion)
+            });
+
+            setIsEditing(false);
+
+            setForm({
+                videojuegoId: "",
+                estado: "pendiente",
+                tiempoJuego: 0,
+                calificacion: 0
+            });
+
+            cargarMiLista();
+
         } catch (err) {
-            setError(err.message || "Error al actualizar el progreso.");
+
+            setError(err.message);
+
         }
+
     };
 
-    const handleEditClick = (juego) => {
+    const editarJuego = (juego) => {
+
         setForm({
-            videojuegoId: juego.videojuegoId,
-            estado: juego.estado || "pendiente",
-            tiempoJuego: juego.tiempoJuego || 0,
-            calificacion: juego.calificacion || 0,
-        });
-        setIsEditing(true);
-    };
-    
-    return (
-        <div>
-            <h2>Mi Lista de Videojuegos</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
 
-            {/* FORMULARIO DE EDICIÓN DE PROGRESO */}
-            {isEditing && (
-                <form onSubmit={handleSubmit}>
-                    <h3>
-                        Actualizar Progreso de: {" "}
-                        {misJuegos.find(j => j.videojuegoId === form.videojuegoId)?.Videojuego?.nombre || "Cargando..."}
+            videojuegoId: juego.videojuegoId,
+
+            estado: juego.estado,
+
+            tiempoJuego: juego.tiempoJuego,
+
+            calificacion: juego.calificacion
+
+        });
+
+        setIsEditing(true);
+
+    };
+
+    return (
+        <div className="coleccion">
+        <h2>Mi Colección</h2>
+
+            {error &&
+
+                <div className="mensaje-error">
+                    {error}
+                </div>
+
+            }
+
+            {isEditing &&
+
+                <form
+                    className="form-editar"
+                    onSubmit={handleSubmit}
+                >
+
+                    <h3>Actualizar progreso
                     </h3>
 
-                    <div>
-                        <label>Estado: </label>
-                        <select name="estado" value={form.estado} onChange={handleChange}>
-                            <option value="pendiente">Pendiente</option>
-                            <option value="jugando">Jugando</option>
-                            <option value="completado">Completado</option>
-                        </select>
-                    </div>
+                    <label>Estado</label>
+                    <select
+                        name="estado"
+                        value={form.estado}
+                        onChange={handleChange}
+                    >
+                        <option value="pendiente">Pendiente</option>
+                        <option value="jugando">Jugando</option>
+                        <option value="completado">Completado</option>
 
-                    <div>
-                        <label>Tiempo Jugado (Horas): </label>
-                        <input
+                    </select>
+
+                    <label>Horas Jugadas</label>
+
+                    <input
                         type="number"
                         name="tiempoJuego"
                         value={form.tiempoJuego}
                         onChange={handleChange}
-                        min="0"
-                        required
-                        />
-                    </div>
+                    />
 
-                    <div>
-                        <label>Calificación (0-10): </label>
-                        <input
+                    <label>Calificación</label>
+
+                    <input
                         type="number"
                         name="calificacion"
-                        value={form.calificacion}
-                        onChange={handleChange}
                         min="0"
                         max="10"
-                        required
-                        />
+                        value={form.calificacion}
+                        onChange={handleChange}
+                    />
+
+                    <div className="botones-form">
+
+                        <button type="submit">
+
+                            Guardar
+
+                        </button>
+
+                        <button type="button" className="cancelar"
+                            onClick={() => setIsEditing(false)}
+                        >Cancelar</button>
                     </div>
-
-                    <button type="submit">Guardar Cambios</button>
-                    <button
-                        type="button"
-                        onClick={() => {
-                        setIsEditing(false);
-                        setForm({ videojuegoId: '', estado: 'pendiente', tiempoJuego: 0, calificacion: 0 });
-                        }}
-                    >Cancelar</button>
                 </form>
-            )}
 
-            <hr />
+            }
 
-            {/* TABLA DE MI COLECCIÓN */}
-            <table border="1" style={{ width: '100%', textAlign: 'left', marginTop: '20px' }}>
-                <thead>
-                <tr>
-                    <th>Videojuego</th>
-                    <th>Estado</th>
-                    <th>Horas Jugadas</th>
-                    <th>Calificacion</th>
-                    <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                {misJuegos.length === 0 ? (
-                    <tr>
-                        <td colSpan="5">
-                            No agregaste ningún juego a tu lista todavía.
-                        </td>
-                    </tr>
-                ) : (
-                    misJuegos.map((item) => (
-                        <tr key={item.videojuegoId}>
-                            <td>{item.Videojuego ? item.Videojuego.nombre : `Juego ID: ${item.videojuegoId}`}</td>
-                            <td>{item.estado}</td>
-                            <td>{item.tiempoJuego} hs</td>
-                            <td>{item.calificacion > 0 ? `${item.calificacion}/10` : 'Sin calificar'}</td>
-                            <td>
-                            <button onClick={() => handleEditClick(item)}>Editar Progreso</button>
-                            </td>
-                        </tr>
-                    ))
-                )}
-                </tbody>
-            </table>
+            <div className="grid-coleccion">{
+                    misJuegos.length === 0 ?
+                        <div className="sin-juegos">
+                            Todavía no agregaste videojuegos a tu coleccion.
+                        </div>
+                        :
+
+                        misJuegos.map((item) => (
+                            <div className="card-coleccion"
+                                key={item.videojuegoId}
+                            >
+                                <h3>{
+                                        item.Videojuego ?
+                                            item.Videojuego.nombre
+                                            :
+                                            "Videojuego"
+                                    }
+                                </h3>
+
+                                <p>Estado
+                                    <strong>
+                                        {item.estado}
+                                    </strong>
+                                </p>
+
+                                <p>Horas
+                                    <strong>{item.tiempoJuego} hs</strong>
+                                </p>
+
+                                <p>Calificación
+                                    <strong>
+                                        {
+                                            item.calificacion > 0 ?
+
+                                                `${item.calificacion}/10`
+
+                                                :
+
+                                                "Sin calificar"
+                                        }
+                                    </strong>
+                                </p>
+                                <button
+                                    className="editar-btn"
+                                    onClick={() => editarJuego(item)}
+                                >Editar progreso</button>
+                            </div>
+
+                        ))
+
+                }
+
+            </div>
+
         </div>
+
     );
+
 };
