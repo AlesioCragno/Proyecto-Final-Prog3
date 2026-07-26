@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { authService } from "../../services/authService";
-// import "../../styles/components/perfil.css";
 
 export const Perfil = () => {
   const [usuario, setUsuario] = useState(null);
@@ -10,9 +9,9 @@ export const Perfil = () => {
     const pedirPerfil = async () => {
       try {
         const datos = await authService.getPerfil();
-        setUsuario(datos.user);
+        setUsuario(datos.user || datos);
       } catch (err) {
-        setError(err.message);
+        setError(err.message || "Error al obtener los datos del perfil");
       }
     };
 
@@ -21,28 +20,28 @@ export const Perfil = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = "/register"; //Mover a Login
   };
 
   if (error) {
     return (
       <div className="perfil-error">
-        <h3>⚠️ Acceso Denegado</h3>
+        <h3>Acceso Denegado</h3>
         <p>{error}</p>
-        <a href="/login">Ir al Login</a>
+        <a href="/login">Ir al Registro / Login</a>
       </div>
     );
   }
 
   if (!usuario) {
     return (
-      <div className="perfil-loading">Cargando datos del perfil oficial...</div>
+      <div className="perfil-loading">Cargando datos del perfil...</div>
     );
   }
 
   return (
     <div className="perfil-container">
-      <h3 className="perfil-title">🔒 Tu Perfil Protegido (JWT)</h3>
+      <h3 className="perfil-title">Tu Perfil Protegido (JWT)</h3>
       <hr className="perfil-divider" />
       <p>
         <strong>ID de Usuario:</strong> {usuario.id}
@@ -56,7 +55,7 @@ export const Perfil = () => {
 
       <div className="perfil-actions">
         <button onClick={handleLogout} className="btn-logout">
-          Cerrar Sesión (Borrar Token)
+          Cerrar Sesión
         </button>
       </div>
     </div>
