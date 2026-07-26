@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { videojuegoService } from '../services/videojuegoService.js'; //// falta hacer, chequear ruta
-import '../styles/components/gestionVideojuego.css'; // falta hacer, chequear ruta
+// import '../styles/components/gestionVideojuego.css'; // falta hacer, chequear ruta
 
-export const GestionVideojuegos = () => {
+export const GestionVideojuego = () => {
   const [videojuegos, setVideojuegos] = useState([]);
   const [error, setError] = useState('');
 

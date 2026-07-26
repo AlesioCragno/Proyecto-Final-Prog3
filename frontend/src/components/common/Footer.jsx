@@ -1,6 +1,6 @@
 // src/components/common/Footer.jsx
 import React from 'react';
-import '../../styles/components/footer.css';
+import '../../styles/components/footer.css'
 
 export const Footer = () => {
   const anioActual = new Date().getFullYear();

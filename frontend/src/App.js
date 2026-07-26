@@ -3,12 +3,12 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 // Componentes comunes
-//import { Navbar } from "./components/common/Navbar";
-//import { Footer } from "./components/common/Footer";
+import { Navbar } from "./components/common/NavBar";
+import { Footer } from "./components/common/Footer";
 
 // Componentes de gestion
 //import { GestionUsuarios } from "./components/GestionUsuarios";
-//import { GestionVideojuegos} from "./components/GestionVideojuegos";
+import { GestionVideojuego } from "./components/GestionVideojuego";
 import { GestionColecciones} from "./components/GestionColecciones";
 
 // JWT
@@ -45,8 +45,8 @@ function App() {
           <Routes>
             
             {/* Rutas del catalogo y colecciones */}
-            {/*<Route path="/" element={<GestionVideojuegos/>}/>*/}
-            {/*<Route path="/videojuegos" element={<GestionVideojuegos/>}/>*/}
+            <Route path="/" element={<GestionVideojuegos/>}/>
+            <Route path="/videojuegos" element={<GestionVideojuegos/>}/>
             <Route path="/colecciones" element={<GestionColecciones/>}/>
             {/*<Route path="/usuarios" element={<GestionUsuarios/>}/>*/}
 
