@@ -14,7 +14,7 @@ export const GestionVideojuegos = () => {
       try {
         setError("");
         // Llamamos al servicio, como es una promesa usamos 'await'
-        const datos = await videojuegoService.getAllVideojuegos();
+        const datos = await videojuegoService.getAll();
 
         // Guardamos los videojuegos en el estado para que se actualice
         setVideojuegos(datos || []);
