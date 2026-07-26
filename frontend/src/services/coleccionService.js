@@ -54,7 +54,7 @@ export const coleccionService = {
 
     // PUT /api/colecciones/:id (actualizar estado de un juego de la coleccion del usuario logueado)
     update: async (videojuegoId, datosActualizados) => {
-        const response = await fetch(`${API_URL}/${id}`, {
+        const response = await fetch(`${API_URL}/${videojuegoId}`, {
             method: "PUT",
             headers: getAuthHeaders(),
             body: JSON.stringify({

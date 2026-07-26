@@ -8,7 +8,7 @@ import { Footer } from "./components/common/Footer";
 
 // Componentes de gestion
 //import { GestionUsuarios } from "./components/GestionUsuarios";
-import { GestionVideojuego } from "./components/GestionVideojuego";
+import { GestionVideojuegos } from "./components/GestionVideojuego";
 import { GestionColecciones} from "./components/GestionColecciones";
 
 // JWT

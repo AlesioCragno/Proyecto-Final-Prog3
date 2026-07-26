@@ -10,13 +10,13 @@ const getAuthHeaders = () => {
 
 export const videojuegoService = {
 
-    // GET /api/videojuegos (obtener lista de juegos del usuario logueado)
+    // GET /api/videojuegos (obtener lista de juegos)
     getAll: async () => {
-        const response = await fetch(`${API_URL}/videojuego`, {
+        const response = await fetch({API_URL}, {
             method: "GET",
             headers: getAuthHeaders(),
         });
-        if (!response.ok) throw new Error("Error al obtener tu lista de videojuegos");
+        if (!response.ok) throw new Error("Error al obtener la lista de videojuegos");
         return await response.json();
     },
 
@@ -26,7 +26,7 @@ export const videojuegoService = {
             method: "GET",
             headers: getAuthHeaders(),
         });
-        if (!response.ok) throw new Error("Error al obtener el detalle de tu juego");
+        if (!response.ok) throw new Error("Error al obtener el detalle del juego");
         return await response.json();
     },
 
