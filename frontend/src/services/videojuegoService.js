@@ -12,7 +12,7 @@ export const videojuegoService = {
 
     // GET /api/videojuegos (obtener lista de juegos del usuario logueado)
     getAll: async () => {
-        const response = await fetch(`${API_URL}/videojuego`, {
+        const response = await fetch(API_URL, {
             method: "GET",
             headers: getAuthHeaders(),
         });
