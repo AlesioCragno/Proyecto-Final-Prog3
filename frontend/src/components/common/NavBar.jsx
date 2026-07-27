@@ -44,12 +44,6 @@ export const Navbar = () => {
           </Link>
         </li>
 
-        <li>
-          <Link to="/usuarios">
-            Usuarios
-          </Link>
-        </li>
-
       </ul>
 
       <div className="navbar-auth">
