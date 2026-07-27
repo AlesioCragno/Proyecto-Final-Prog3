@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/register");
+    navigate("/login");
   }
 
   return (
