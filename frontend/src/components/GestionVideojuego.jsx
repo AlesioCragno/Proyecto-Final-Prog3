@@ -27,10 +27,18 @@ export const GestionVideojuegos = () => {
   }, []); // dejar los '[]' es lo que hace que suceda todo lo anterior ni bien carga el componente y no luego de otro
 
   const handleAgregarAColeccion = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Debes iniciar sesion para agregar videojuegos a tu coleccion.");
+      return;
+    }
+
     try {
       setError("");
       setMensajeExito("");
-      await coleccionService.addAColeccion(id);
+
+      await coleccionService.addAColeccion(id, "Pendiente", 0);
+
       setMensajeExito("Juego agregado con exito a tu coleccion");
       setTimeout(() => setMensajeExito(""), 3000);
     } catch (err) {
@@ -44,6 +52,7 @@ export const GestionVideojuegos = () => {
 
       {/* Si hay un error, lo renderizamos y mostramos */}
       {error && <div className="mensaje-error">{error}</div>}
+      {mensajeExito && <div>{mensajeExito}</div>}
 
       <table className="tabla-videojuegos">
         <thead>
@@ -53,6 +62,7 @@ export const GestionVideojuegos = () => {
             <th>Descripción</th>
             <th>Género</th>
             <th>Plataforma</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -64,6 +74,11 @@ export const GestionVideojuegos = () => {
               <td>{item.descripcion}</td>
               <td>{item.genero}</td>
               <td>{item.plataforma}</td>
+              <td>
+                <button className='btn-agregar' onClick={() => handleAgregarAColeccion(item.id)}>
+                  Agregar
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
