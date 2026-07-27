@@ -8,11 +8,11 @@
 > - Ailén Villalba
 > - Valentina Vitale
 
-# Sistema Web Full-Stack con Docker
+---
 
-Proyecto base para el trabajo final de Programacion 3. Es una aplicacion web completa con frontend, backend, base de datos y servicios auxiliares, todo orquestado con Docker Compose.
-
-**Tu trabajo consiste en completar las partes marcadas con `// TODO` en el backend** (autenticacion JWT) y desarrollar las funcionalidades adicionales que se indiquen.
+Usuario de prueba para testeo:
+> correo: admin@correo.com
+> contraseña: Admin1234
 
 ---
 
@@ -27,6 +27,14 @@ Flujo de trabajo:
 3. Creación de Pull Requests.
 4. Revisión de código.
 5. Integración a la rama principal (main).
+
+### Despliegues en Render y Netlify:
+
+Se utilizó Render para el despliegue del backend:
+https://proyecto-final-prog3.onrender.com/
+
+Se utilizó Netlify para el despliegue del frontend:
+https://proyecto-final-prog3.netlify.app/
 
 ## División de las tareas entre los integrantes.
 
