@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from 'react';
+import { videojuegoService } from '../services/videojuegoService'; //// falta hacer, chequear ruta
+import '../styles/components/gestionVideojuego.css'; // falta hacer, chequear ruta
+import { coleccionService } from '../services/coleccionService';
+
+export const GestionVideojuegos = () => {
+  const [videojuegos, setVideojuegos] = useState([]);
+  const [error, setError] = useState('');
+  const [ mensajeExito, setMensajeExito ] = useState("");
+
+  // Usamos useEffect para pedir los videojuegos automáticamente al cargar el componente
+  useEffect(() => {
+    const pedirVideojuegos = async () => {
+      try {
+        setError("");
+        // Llamamos al servicio, como es una promesa usamos 'await'
+        const datos = await videojuegoService.getAll();
+
+        // Guardamos los videojuegos en el estado para que se actualice
+        setVideojuegos(datos || []);
+      } catch (err) {
+        setError(err.message || "Error al cargar el catalogo de videojuegos");
+      }
+    };
+
+    pedirVideojuegos();
+  }, []); // dejar los '[]' es lo que hace que suceda todo lo anterior ni bien carga el componente y no luego de otro
+
+  const handleAgregarAColeccion = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Debes iniciar sesion para agregar videojuegos a tu coleccion.");
+      return;
+    }
+
+    try {
+      setError("");
+      setMensajeExito("");
+
+      await coleccionService.addAColeccion(id, "Pendiente", 0);
+
+      setMensajeExito("Juego agregado con exito a tu coleccion");
+      setTimeout(() => setMensajeExito(""), 3000);
+    } catch (err) {
+      setError(err.message || "No se pudo agregar el juego a tu coleccion");
+    }
+  };
+
+  return (
+    <div className="contenedor-videojuegos">
+      <h3>Listado Oficial de Videojuegos</h3>
+
+      {/* Si hay un error, lo renderizamos y mostramos */}
+      {error && <div className="mensaje-error">{error}</div>}
+      {mensajeExito && <div>{mensajeExito}</div>}
+
+      <table className="tabla-videojuegos">
+        <thead>
+          <tr className="encabezado-tabla">
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Género</th>
+            <th>Plataforma</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Recorremos el array con el estado de los videojuegos .map */}
+          {videojuegos.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.nombre}</td>
+              <td>{item.descripcion}</td>
+              <td>{item.genero}</td>
+              <td>{item.plataforma}</td>
+              <td>
+                <button className='btn-agregar' onClick={() => handleAgregarAColeccion(item.id)}>
+                  Agregar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};

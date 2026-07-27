@@ -1,19 +1,222 @@
-.App {
-  text-align: center;
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===========================
+   VARIABLES
+=========================== */
+
+:root{
+
+    --background:#0b1120;
+    --background2:#111827;
+
+    --card:#1a2333;
+
+    --violet:#7c3aed;
+    --violetHover:#9255ff;
+
+    --text:#ffffff;
+    --textSoft:#a7b2c8;
+
+    --border:#263246;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.App-header a {
-  color: #61dafb;
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top right,#4c1d9530,transparent 35%),
+    radial-gradient(circle at bottom left,#2563eb15,transparent 30%),
+    var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+}
+
+/* ===========================
+   APP
+=========================== */
+
+.App{
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+/* ===========================
+   MAIN
+=========================== */
+
+.main-content{
+
+    width:min(1300px,92%);
+    margin:auto;
+
+    flex:1;
+
+    padding:40px 0;
+
+}
+
+/* ===========================
+   TITULOS
+=========================== */
+
+.page-title{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.page-subtitle{
+
+    color:var(--textSoft);
+
+    margin-bottom:35px;
+
+}
+
+/* ===========================
+   TARJETA GENERAL
+=========================== */
+
+.section-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.30);
+
+}
+
+/* ===========================
+   BOTONES GENERALES
+=========================== */
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:10px;
+
+    transition:.25s;
+
+    font-family:inherit;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+input,
+select{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+    background:#0f172a;
+
+    color:white;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:var(--violet);
+
+    box-shadow:0 0 0 3px rgba(124,58,237,.25);
+
+}
+
+/* ===========================
+   LINKS
+=========================== */
+
+a{
+
+    text-decoration:none;
+    color:inherit;
+
+}
+
+/* ===========================
+   SCROLL
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111827;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4c1d95;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#6d28d9;
+
 }
