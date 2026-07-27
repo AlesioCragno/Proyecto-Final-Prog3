@@ -20,7 +20,7 @@ export const Perfil = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/register"; //Mover a Login
+    window.location.href = "/login";
   };
 
   if (error) {

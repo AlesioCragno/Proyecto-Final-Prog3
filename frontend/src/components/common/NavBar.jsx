@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/register");
+    navigate("/login");
   }
 
   return (
@@ -52,9 +52,9 @@ export const Navbar = () => {
             Cerrar Sesion
           </button>
         ) : (
-          <Link to="/register">
+          <Link to="/login">
             <button className="btn-login">
-              Iniciar Sesion / Registro
+              Iniciar Sesion
             </button>
           </Link>
         )}
