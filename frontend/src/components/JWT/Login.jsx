@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { authService } from "../../services/authService";
 
 export const Login = () => {
@@ -62,6 +63,11 @@ export const Login = () => {
         </div>
 
         <button type="submit">Ingresar</button>
+
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <span>¿No tenes un usuario?</span>
+          <Link to="/register">Registrate</Link>
+        </div>
       </form>
     </div>
   );
