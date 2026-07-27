@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { videojuegoService } from '../services/videojuegoService'; //// falta hacer, chequear ruta
-// import '../styles/components/gestionVideojuego.css'; // falta hacer, chequear ruta
+import '../styles/components/gestionVideojuego.css'; // falta hacer, chequear ruta
 import { coleccionService } from '../services/coleccionService';
 
 export const GestionVideojuegos = () => {

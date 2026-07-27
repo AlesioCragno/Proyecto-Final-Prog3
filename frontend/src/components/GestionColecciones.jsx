@@ -135,12 +135,6 @@ export const GestionColecciones = () => {
                     />
 
                     <div className="botones-form">
-
-                        <button type="submit">
-
-                            Guardar
-
-                    <div>
                         <button type="submit" className="cancelar">Guardar Cambios</button>
                         <button
                             type="button"
@@ -152,7 +146,7 @@ export const GestionColecciones = () => {
                     </div>
                 </form>
 
-            }
+            )}
 
             <div className="grid-coleccion">{
                     misJuegos.length === 0 ?
