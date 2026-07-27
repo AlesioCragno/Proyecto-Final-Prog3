@@ -22,6 +22,11 @@ export const coleccionService = {
             method: "GET",
             headers: getAuthHeaders(),
         });
+
+        if (response.status === 404) {
+            return [];
+        }
+
         if (!response.ok) throw new Error("Error al obtener tu lista de videojuegos");
         return await response.json();
     },
@@ -38,18 +43,25 @@ export const coleccionService = {
 
     // POST /api/colecciones (agregar un videojuego a la coleccion del usuario logueado)
     addAColeccion: async (juego) => {
+
+        const bodyData = typeof juego === "object" ? juego
+        : { videojuegoId: Number(juego), estado: "pendiente", progreso: 0};
+
         const response = await fetch(API_URL, {
             method: "POST",
             headers: getAuthHeaders(),
-            body: JSON.stringify(juego),
+            body: JSON.stringify(bodyData),
         });
-        if (!response.ok) throw new Error("Error al agregar el juego a la coleccion");
-        return await response.json();
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.message || data.error || "Error al agregar el juego a la coleccion");
+        return data;
     },
 
     // PUT /api/colecciones/:id (actualizar estado de un juego de la coleccion del usuario logueado)
     update: async (videojuegoId, datosActualizados) => {
-        const response = await fetch(`${API_URL}/${id}`, {
+        const response = await fetch(`${API_URL}/${videojuegoId}`, {
             method: "PUT",
             headers: getAuthHeaders(),
             body: JSON.stringify({
@@ -58,7 +70,11 @@ export const coleccionService = {
                 tiempoJuego: datosActualizados.tiempoJuego
             }),
         });
-        if (!response.ok) throw new Error("Error al actualizar el estado del juego");
-        return await response.json();
+
+        const data = await response.json()
+
+        if (!response.ok) throw new Error(data.message || data.error || "Error al actualizar el estado del juego");
+        
+        return data;
     },
 };

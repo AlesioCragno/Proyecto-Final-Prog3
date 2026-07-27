@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { authService } from "../../services/authService";
-import e from "cors";
 
 export const Register = () => {
     const [nombre, setNombre] = useState("");

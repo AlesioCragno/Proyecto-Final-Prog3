@@ -1,9 +1,5 @@
 // en local usa la API en localhost, en producción usa la URL de Render.
-const API_URL =
-  process.env.REACT_APP_API_URL ||
-  (window.location.hostname === "localhost"
-    ? "http://localhost:3001/api/auth"
-    : "https://proyecto-final-prog3.onrender.com/api/auth");
+const API_URL = "https://proyecto-final-prog3.onrender.com/api/auth";
 
 export const authService = {
   // POST /api/register: registra un nuevo usuario (Pública)

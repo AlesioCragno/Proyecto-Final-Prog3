@@ -16,6 +16,7 @@ export const GestionColecciones = () => {
     // Obtener los juegos del usuario 
     const cargarMiLista = async () => {
         try {
+            setError("");
             const datos = await coleccionService.getMiLista();
             setMisJuegos(datos);
         } catch (err) {
@@ -41,7 +42,7 @@ export const GestionColecciones = () => {
                     calificacion: Number(form.calificacion),
                 });
 
-                setForm({ id: "", estado: "pendiente", tiempoJuego: 0, calificacion: 0 });
+                setForm({ videojuegoId: "", estado: "pendiente", tiempoJuego: 0, calificacion: 0 });
                 setIsEditing(false)
                 cargarMiLista();
             }
@@ -67,7 +68,7 @@ export const GestionColecciones = () => {
 
             {/* FORMULARIO DE EDICIÓN DE PROGRESO */}
             {isEditing && (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ marginTop: "20px", marginBottom: "20px" }}>
                     <h3>
                         Actualizar Progreso de: {" "}
                         {misJuegos.find(j => j.videojuegoId === form.videojuegoId)?.Videojuego?.nombre || "Cargando..."}
@@ -107,14 +108,16 @@ export const GestionColecciones = () => {
                         />
                     </div>
 
-                    <button type="submit">Guardar Cambios</button>
-                    <button
-                        type="button"
-                        onClick={() => {
-                        setIsEditing(false);
-                        setForm({ videojuegoId: '', estado: 'pendiente', tiempoJuego: 0, calificacion: 0 });
-                        }}
-                    >Cancelar</button>
+                    <div>
+                        <button type="submit">Guardar Cambios</button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                            setIsEditing(false);
+                            setForm({ videojuegoId: '', estado: 'pendiente', tiempoJuego: 0, calificacion: 0 });
+                            }}
+                        >Cancelar</button>
+                    </div>
                 </form>
             )}
 
