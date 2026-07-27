@@ -1,0 +1,217 @@
+.coleccion{
+
+    width:100%;
+
+}
+
+.subtitulo{
+
+    color:#94A3B8;
+
+    margin-bottom:35px;
+
+}
+
+.grid-coleccion{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.card-coleccion{
+
+    background:#1A2333;
+
+    border:1px solid #2B374A;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    transition:.3s;
+
+}
+
+.card-coleccion:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#7C3AED;
+
+    box-shadow:0px 15px 35px rgba(0,0,0,.35);
+
+}
+
+.icono{
+
+    width:70px;
+
+    height:70px;
+
+    background:#7C3AED;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:2rem;
+
+    margin-bottom:20px;
+
+}
+
+.card-coleccion h3{
+
+    margin-bottom:15px;
+
+}
+
+.card-coleccion p{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:10px 0;
+
+    color:#B7C4D7;
+
+}
+
+.card-coleccion strong{
+
+    color:white;
+
+}
+
+.editar-btn{
+
+    margin-top:25px;
+
+    width:100%;
+
+    padding:12px;
+
+    background:#7C3AED;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.editar-btn:hover{
+
+    background:#9654FF;
+
+}
+
+.form-editar{
+
+    background:#1A2333;
+
+    border:1px solid #2B374A;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-bottom:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.form-editar h3{
+
+    margin-bottom:10px;
+
+}
+
+.botones-form{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:15px;
+
+}
+
+.botones-form button{
+
+    flex:1;
+
+    padding:12px;
+
+}
+
+.cancelar{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+.cancelar:hover{
+
+    background:#475569;
+
+}
+
+.mensaje-error{
+
+    background:#6B1E1E;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:25px;
+
+}
+
+.sin-juegos{
+
+    width:100%;
+
+    padding:35px;
+
+    background:#1A2333;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    color:#94A3B8;
+
+}
+
+@media(max-width:700px){
+
+    .grid-coleccion{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
