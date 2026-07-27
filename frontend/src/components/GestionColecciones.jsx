@@ -19,7 +19,7 @@ export const GestionColecciones = () => {
     const cargarMiLista = async () => {
 
         try {
-
+            setError("");
             const datos = await coleccionService.getMiLista();
 
             setMisJuegos(datos);
@@ -52,24 +52,17 @@ export const GestionColecciones = () => {
         e.preventDefault();
 
         try {
+            if (isEditing) {
+                await coleccionService.update(form.videojuegoId, {
+                    estado: form.estado,
+                    tiempoJuego: Number(form.tiempoJuego),
+                    calificacion: Number(form.calificacion),
+                });
 
-            await coleccionService.update(form.videojuegoId, {
-                estado: form.estado,
-                tiempoJuego: Number(form.tiempoJuego),
-                calificacion: Number(form.calificacion)
-            });
-
-            setIsEditing(false);
-
-            setForm({
-                videojuegoId: "",
-                estado: "pendiente",
-                tiempoJuego: 0,
-                calificacion: 0
-            });
-
-            cargarMiLista();
-
+                setForm({ videojuegoId: "", estado: "pendiente", tiempoJuego: 0, calificacion: 0 });
+                setIsEditing(false)
+                cargarMiLista();
+            }
         } catch (err) {
 
             setError(err.message);
@@ -97,25 +90,16 @@ export const GestionColecciones = () => {
     };
 
     return (
-        <div className="coleccion">
-        <h2>Mi Colección</h2>
+        <div>
+            <h2>Mi Lista de Videojuegos</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
 
-            {error &&
-
-                <div className="mensaje-error">
-                    {error}
-                </div>
-
-            }
-
-            {isEditing &&
-
-                <form
-                    className="form-editar"
-                    onSubmit={handleSubmit}
-                >
-
-                    <h3>Actualizar progreso
+            {/* FORMULARIO DE EDICIÓN DE PROGRESO */}
+            {isEditing && (
+                <form onSubmit={handleSubmit} style={{ marginTop: "20px", marginBottom: "20px" }}>
+                    <h3>
+                        Actualizar Progreso de: {" "}
+                        {misJuegos.find(j => j.videojuegoId === form.videojuegoId)?.Videojuego?.nombre || "Cargando..."}
                     </h3>
 
                     <label>Estado</label>
@@ -156,10 +140,14 @@ export const GestionColecciones = () => {
 
                             Guardar
 
-                        </button>
-
-                        <button type="button" className="cancelar"
-                            onClick={() => setIsEditing(false)}
+                    <div>
+                        <button type="submit" className="cancelar">Guardar Cambios</button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                            setIsEditing(false);
+                            setForm({ videojuegoId: '', estado: 'pendiente', tiempoJuego: 0, calificacion: 0 });
+                            }}
                         >Cancelar</button>
                     </div>
                 </form>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { authService } from "../../services/authService";
-import "../../styles/components/listaUsuarios.css";
 
 export const ListaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -9,10 +8,11 @@ export const ListaUsuarios = () => {
   useEffect(() => {
     const cargarUsuarios = async () => {
       try {
+        setError("");
         const datos = await authService.getAllUsers();
-        setUsuarios(datos);
+        setUsuarios(datos || []);
       } catch (err) {
-        setError(err.message);
+        setError(err.message || "Error al cargar la lista de usuarios.");
       }
     };
 
@@ -34,13 +34,20 @@ export const ListaUsuarios = () => {
           </tr>
         </thead>
         <tbody>
-          {usuarios.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.nombre}</td>
-              <td>{user.email}</td>
+          {usuarios.length === 0 ? (
+            <tr>
+              <td colSpan="3">No hay usuarios registrados</td>
             </tr>
-          ))}
+          ) : (
+            usuarios.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.nombre}</td>
+                <td>{user.email}</td>
+              </tr>
+              ))
+            )
+          }
         </tbody>
       </table>
     </div>

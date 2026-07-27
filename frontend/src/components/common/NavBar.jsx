@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../../styles/components/navbar.css";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+  const isAuth = Boolean(localStorage.getItem("token"));
 
-  const [logged, setLogged] = useState(false);
-
-  const handleAuthClick = () => {
-    setLogged(!logged);
-  };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/register");
+  }
 
   return (
 
@@ -52,29 +53,16 @@ export const Navbar = () => {
       </ul>
 
       <div className="navbar-auth">
-
-        {logged ? (
-
-          <button
-            className="btn-logout"
-            onClick={handleAuthClick}
-          >
-            Log out
+        {isAuth ? (
+          <button className="btn-logout" onClick={handleLogout}>
+            Cerrar Sesion
           </button>
-
         ) : (
-
-          <Link to="/login">
-
-            <button
-              className="btn-login"
-              onClick={handleAuthClick}
-            >
-              Log in
+          <Link to="/register">
+            <button className="btn-login">
+              Iniciar Sesion / Registro
             </button>
-
           </Link>
-
         )}
 
       </div>
