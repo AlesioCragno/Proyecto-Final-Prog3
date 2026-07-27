@@ -43,7 +43,11 @@ https://proyecto-final-prog3.netlify.app/
 > - Implementacion de TODO's en authController.js
 > - Implementacion de videojuegoController.js
 > - Implementacion de videojuegoRoutes.js
-> - Documentacion en el README.md
+> - Parcial documentacion del BACKEND en el README.md
+> - Implementación de ListaUsuarios.jsx
+> - Implementación de Perfil.jsx
+> - Implementación de GestionVideojuegos.jsx
+> - Implementación de authService.js
 
 > **Andrés Aguayo y Fabricio Maida**:
 >
@@ -59,6 +63,12 @@ https://proyecto-final-prog3.netlify.app/
 > **Fabricio Maida**:
 >
 > - Implementación y diseñado del Diagrama de Entidad/Relación (Diagrama ER Proyecto.png)
+> - Parcial documentacion del BACKEND en el README.md
+> - Arreglos de tipeo/formato varios
+> - Implementación de Login.jsx
+> - Implementación de GestionUsuarios.jsx
+> - Implementación de usuarioService.js
+> - Documentacion del FRONTEND en el README.md
 
 > **Andrés Aguayo**:
 >
@@ -67,11 +77,21 @@ https://proyecto-final-prog3.netlify.app/
 > - Implementación de videojuegosValidator.middleware.js
 > - Implementación y migración de modelos a typescript
 > - Configuraciones generales y arreglos varios
+> - Implementación de index.html
+> - Implementación de Register.jsx
+> - Implementación de GestionColecciones.jsx
+> - Implementación de coleccionService.js
+> - Implementación de App.css y App.js
+> - Implementación de index.css y index.js
 
 > **Ailén Villalba**:
 >
 > - Implementación de coleccionController.js
 > - Implementación de coleccionRoutes.js
+> - Implementación de Footer.jsx
+> - Implementación de Navbar.jsx
+> - Implementación de videojuegoService.js
+> - Implementación de todos los styles
 
 ---
 
@@ -191,6 +211,34 @@ https://proyecto-final-prog3.netlify.app/
 - `getColeccionById`: Busca un registro exacto de un usuario con un videojuego en particular. Combina el `userId` (que viene en la URL) con el `videojuegoId` (que curiosamente viaja en el cuerpo del `req.body`) para verificar si esa vinculación existe.
 - `postColeccion`: Añade un videojuego a la biblioteca de un usuario. Recibe los datos del juego y del usuario junto con datos extra (estado, calificacion, tiempoJuego) y ejecuta un método para insertarlo en la base de datos.
 - `putColeccion`: Modifica los detalles de un juego que el usuario ya tenía en su colección (por ejemplo, si le quiere cambiar la calificación o sumarle horas de juego). Identifica la colección mediante el `userId` y `videojuegoId`, verifica que exista y luego actualiza los campos permitidos (estado, calificacion, tiempoJuego) usando `.update().`
+
+### services
+
+> authService.js:
+
+- `register`: Registra un nuevo usuario.
+- `login`: Inicio de sesión.
+- `getPerfil`: Obtiene el perfil del usuario logueado.
+- `getAllUsers`: Obtiene a todos los usuarios del sistema.
+
+> coleccionService.js:
+
+- `getAll`: Lista todas las colecciones.
+- `getMiLista`: Obtiene la lista de juegos del usuario logueado.
+- `getDetalle`: Muestra el detalle de un juego específico de la colección del usuario logueado.
+- `addAColeccion`: Agrega un videojuego a la colección del usuario logueado.
+- `update`: Actualiza el estado de un juego de la colección del usuario logueado.
+
+> usuarioService.js:
+
+- `obtenerUsuarios`: Muestra todos los usuarios.
+- `obtenerPerfil`: Obtiene el perfil del usuario logueado.
+
+> videojuegoService.js:
+
+- `getAll`: Obtiene la lista de juegos.
+- `getId`: Muestra el detalle de un juego específico.
+- `addVideojuego`: Crea un nuevo videojuego.
 
 ---
 
