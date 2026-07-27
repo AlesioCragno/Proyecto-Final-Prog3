@@ -52,9 +52,9 @@ export const Navbar = () => {
             Cerrar Sesion
           </button>
         ) : (
-          <Link to="/register">
+          <Link to="/login">
             <button className="btn-login">
-              Iniciar Sesion / Registro
+              Iniciar Sesion
             </button>
           </Link>
         )}
